@@ -8,8 +8,10 @@ module.exports = {
     extend: {
       colors: {
         // Add your custom colors here
-        primary: '#EE3F48',
+        primary: '#EB3E32',
         secondary: '#ffed4a',
+        background: '#F4F4F4',
+        paragraph: '#454545'
         // Add more custom colors as needed
       },
       fontSize: {
