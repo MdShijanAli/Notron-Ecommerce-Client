@@ -8,7 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "flowbite": "^2.1.1",
     "pinia": "^2.1.7",
+    "preline": "^2.0.0",
+    "primeicons": "^6.0.1",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
