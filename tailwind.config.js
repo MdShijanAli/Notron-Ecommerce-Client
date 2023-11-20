@@ -13,7 +13,8 @@ module.exports = {
         primary: '#EB3E32',
         secondary: '#ffed4a',
         background: '#F4F4F4',
-        paragraph: '#454545'
+        paragraph: '#454545',
+        footer: '#222222'
         // Add more custom colors as needed
       },
       fontSize: {
@@ -27,7 +28,8 @@ module.exports = {
         '3xl': '1.875rem', // 3 Extra Large
         '4xl': '2.25rem',  // 4 Extra Large
         '5xl': '3rem',     // 5 Extra Large
-        '6xl': '4rem',     // 6 Extra Large
+        'h3': '18px',
+        'footerBody': '14px' // 6 Extra Large
         // Add more custom font sizes as needed
       },
     },
