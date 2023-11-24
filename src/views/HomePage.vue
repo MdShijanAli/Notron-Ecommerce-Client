@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-7xl mx-auto px-6 py-10">
-    <h1>This is Home Page</h1>
-  </div>
+
+    <HomePageHeroSection></HomePageHeroSection>
+    <HomePageCTASection></HomePageCTASection>
+ 
 </template>
 <script>
+import HomePageCTASection from '../components/HomePageCTASection.vue';
+import HomePageHeroSection from '../components/HomePageHeroSection.vue';
+
 export default {
-  name: "HomePage"
+    name: "HomePage",
+    components: { HomePageHeroSection, HomePageCTASection }
 }
 </script>
 <style>

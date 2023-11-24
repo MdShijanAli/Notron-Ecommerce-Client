@@ -164,7 +164,7 @@
         </div>
 
         <div>
-          <div class="drawer">
+          <div class="drawer z-[100]">
             <input id="my-drawer" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content">
               <!-- Page content here -->
