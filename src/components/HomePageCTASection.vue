@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="max-w-7xl mx-auto px-6 py-20">
+    <div class="max-w-7xl mx-auto px-6 pb-10 pt-20">
         <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
             <RouterLink to="/shop" class="overflow-hidden">
               <div class="h-[430px] bg-no-repeat bg-cover overflow-hidden hover:scale-105 transition duration-500 ease-in-out " style="background-image: url(../src/assets/images/1.webp);">
