@@ -5,6 +5,8 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
     "./node_modules/flowbite/**/*.{vue,js,ts,jsx,tsx}",
     'node_modules/preline/dist/*.{vue,js,ts,jsx,tsx}',
+    'node_modules/flowbite-vue/**/*.{js,jsx,ts,tsx}',
+    'node_modules/flowbite/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
     extend: {
@@ -28,6 +30,7 @@ module.exports = {
         'bannerParagraph': '24px',
         'ctah1': '36px',
         'h1': '48px',
+        'h2': '26px'
         
         // 6 Extra Large
         // Add more custom font sizes as needed
