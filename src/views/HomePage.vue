@@ -3,6 +3,7 @@
     <HomePageHeroSection></HomePageHeroSection>
     <HomePageCTASection></HomePageCTASection>
     <HomePageProducts :products="products"></HomePageProducts>
+    <HomePageSaving></HomePageSaving>
 </template>
 <script>
 import HomePageCTASection from '../components/HomePageCTASection.vue';
@@ -18,10 +19,11 @@ import img5 from "../assets/images/product-5.webp";
 import img6 from "../assets/images/product-6.webp";
 import img7 from "../assets/images/product-7.webp";
 import img8 from "../assets/images/product-8.webp";
+import HomePageSaving from '../components/HomePageSaving.vue';
 
 export default {
     name: "HomePage",
-    components: { HomePageHeroSection, HomePageCTASection, HomePageProducts },
+    components: { HomePageHeroSection, HomePageCTASection, HomePageProducts, HomePageSaving },
 
     data() {
         return {

@@ -19,7 +19,8 @@ module.exports = {
         footer: '#222222',
         bannerBg: '#3F99F1',
         product: '#666666',
-        headingPara: '#595959'
+        headingPara: '#595959',
+        savingBG: '#11141C'
         // Add more custom colors as needed
       },
       fontSize: {
@@ -30,7 +31,8 @@ module.exports = {
         'bannerParagraph': '24px',
         'ctah1': '36px',
         'h1': '48px',
-        'h2': '26px'
+        'h2': '26px',
+        'head': '60px'
         
         // 6 Extra Large
         // Add more custom font sizes as needed
