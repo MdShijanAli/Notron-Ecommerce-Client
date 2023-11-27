@@ -32,6 +32,7 @@ export default {
           category: "Men/Women",
           title: "Leather Mens Slipper",
           price: "240.00",
+          description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,",
           discountPrice: 100,
           offer: "-10%",
         },
@@ -41,6 +42,7 @@ export default {
           category: "Men/Women",
           title: "Quickiin Mens shoes",
           price: "140.00",
+          description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,",
         },
         {
           id: 3,
@@ -48,6 +50,7 @@ export default {
           category: "Men/Women",
           title: "Rexpo Womens shoes",
           price: "260.00",
+          description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,",
           discountPrice: 60,
           offer: "-10%",
         },
@@ -56,6 +59,7 @@ export default {
           img: img4,
           category: "Men/Women",
           title: "Hollister V-Neck Knit",
+          description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,",
           price: "880.00",
         },
         {
@@ -63,6 +67,7 @@ export default {
           img: img5,
           category: "Men/Women",
           title: "Primitive Mens shoes",
+          description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,",
           price: "500.00",
         },
         {
@@ -71,6 +76,7 @@ export default {
           category: "Men/Women",
           title: "New Womens High Hills",
           price: "333.00",
+          description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,",
           discountPrice: 300,
           offer: "-10%",
         },
@@ -80,6 +86,7 @@ export default {
           category: "Men/Women",
           title: "Simple Fabric Shoe",
           price: "133.00",
+          description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,",
         },
         {
           id: 8,
@@ -87,6 +94,7 @@ export default {
           category: "Men/Women",
           title: "exclusive mens shoe",
           price: "420.00",
+          description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,",
           discountPrice: 300,
           offer: "-10%",
         },
