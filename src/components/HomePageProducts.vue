@@ -207,7 +207,7 @@ export default {
   props: ["products"],
   data() {
     return {
-      counter: 0,
+      counter: 1,
       selectedProduct: {},
     };
   },

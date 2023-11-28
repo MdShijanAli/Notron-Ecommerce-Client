@@ -20,7 +20,8 @@ module.exports = {
         bannerBg: '#3F99F1',
         product: '#666666',
         headingPara: '#595959',
-        savingBG: '#11141C'
+        savingBG: '#11141C',
+        homeInfoBG: '#F3F3F3',
         // Add more custom colors as needed
       },
       fontSize: {
