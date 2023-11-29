@@ -1,16 +1,24 @@
 <template>
   <div>
     <div class="max-w-7xl mx-auto px-6 py-10">
- 
-      <TitleDescriptionSlot 
-      headline="Featured Items" 
-      description="There are many variations of passages of Lorem Ipsum available" >
-    </TitleDescriptionSlot>
-    
-      <div
-        class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
-      >
-        <div class="group" v-for="product in products" :key="product.id">
+        <TitleDesctiptionSlot headline="Best Seller" description="There are many variations of passages of Lorem Ipsum available"></TitleDesctiptionSlot>
+   
+        <swiper
+    :slidesPerView="4"
+    :spaceBetween="30"
+    :loop="true"
+    :autoplay="{
+      delay: 1500,
+      disableOnInteraction: false,
+    }"
+    :pagination="{
+      clickable: true,
+    }"
+    :modules="modules"
+    class="mySwiper"
+  >
+    <swiper-slide v-for="product in products" :key="product.id">
+      <div class="group" >
           <div class="border rounded-sm p-5 relative overflow-hidden">
             <img
               class="hover:scale-110 transition duration-500 ease-in-out"
@@ -67,7 +75,7 @@
 
               <div
                 @click="selectProduct(product)"
-                onclick="my_modal_3.showModal()"
+                onclick="best_selling_product.showModal()"
                 class="border w-10 h-10 flex items-center justify-center rounded-sm bg-white hover:bg-primary transition duration-500 ease-in-out hover:text-white"
               >
                 <svg
@@ -103,11 +111,11 @@
             </h1>
           </div>
         </div>
-      </div>
+  </swiper-slide>
 
-      <!-- You can open the modal using ID.showModal() method -->
 
-      <dialog id="my_modal_3" class="modal">
+  
+  <dialog id="best_selling_product" class="modal">
         <div class="modal-box w-11/12 max-w-5xl p-10 rounded-sm">
           <form method="dialog">
             <button
@@ -195,31 +203,53 @@
     <button>close</button>
   </form>
       </dialog>
-    </div>
+ 
+  </swiper>
+   
+      </div>
   </div>
 </template>
 <script>
-import { ref } from "vue";
-import { mapState } from "pinia"
-import { useProductStore } from "../stores/ProductStore";
-import TitleDescriptionSlot from "./TitleDescriptionSlot.vue";
-const value = ref(50);
+import TitleDesctiptionSlot from '../components/TitleDescriptionSlot.vue'
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import {mapState} from "pinia"
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+
+import {useProductStore} from "../stores/ProductStore"
+import { Autoplay } from 'swiper/modules';
+
+
 export default {
-    name: "HomePageProducts",
-    data() {
-        return {
-            counter: 1,
-            selectedProduct: {},
-        };
-    },
-    mounted() {
-    },
-    computed: {
-        ...mapState(useProductStore, {
-            products: 'allProducts'
-        })
-    },
-    methods: {
+    components: {
+      Swiper,
+    SwiperSlide,
+    TitleDesctiptionSlot
+  },
+
+  data() {
+    return {
+      counter: 1,
+      selectedProduct: {},
+    }
+  },
+    setup() {
+      return {
+        modules: [Autoplay],
+      };
+  },
+
+  computed: {
+    ...mapState(useProductStore, {
+      products: "allProducts",
+
+    })
+
+  },
+
+  methods: {
         selectProduct(product) {
             this.selectedProduct = product;
             // console.log(product.img);
@@ -233,7 +263,9 @@ export default {
             }
         },
     },
-    components: { TitleDescriptionSlot }
+
 };
 </script>
-<style></style>
+<style>
+
+</style>

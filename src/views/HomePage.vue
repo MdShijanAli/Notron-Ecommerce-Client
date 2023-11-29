@@ -2,16 +2,18 @@
 
     <HomePageHeroSection></HomePageHeroSection>
     <HomePageCTASection></HomePageCTASection>
-    <HomePageProducts :products="products"></HomePageProducts>
+    <HomePageProducts></HomePageProducts>
     <HomePageSaving></HomePageSaving>
     <HomePageInfo></HomePageInfo>
+    <HomeBestSallerSection></HomeBestSallerSection>
+    <HomeTestimonial></HomeTestimonial>
 </template>
 <script>
-import HomePageCTASection from '../components/HomePageCTASection.vue';
-import HomePageHeroSection from '../components/HomePageHeroSection.vue';
-import HomePageProducts from '../components/HomePageProducts.vue';
-import HomePageInfo from '../components/HopePageinfo.vue';
-import HomePageSaving from '../components/HomePageSaving.vue';
+import HomePageCTASection from '../components/HomePageCTASection.vue'
+import HomePageHeroSection from '../components/HomePageHeroSection.vue'
+import HomePageProducts from '../components/HomePageProducts.vue'
+import HomePageInfo from '../components/HomePageinfo.vue'
+import HomePageSaving from '../components/HomePageSaving.vue'
 
 
 import img1 from "../assets/images/product-1.webp";
@@ -22,10 +24,12 @@ import img5 from "../assets/images/product-5.webp";
 import img6 from "../assets/images/product-6.webp";
 import img7 from "../assets/images/product-7.webp";
 import img8 from "../assets/images/product-8.webp";
+import HomeBestSallerSection from '../components/HomeBestSallerSection.vue';
+import HomeTestimonial from '../components/HomeTestimonial.vue'
 
 export default {
     name: "HomePage",
-    components: { HomePageHeroSection, HomePageCTASection, HomePageProducts, HomePageSaving, HomePageInfo },
+    components: { HomePageHeroSection, HomePageCTASection, HomePageProducts, HomePageSaving, HomePageInfo, HomeBestSallerSection, HomeTestimonial },
 
     data() {
         return {
