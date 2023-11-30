@@ -13,6 +13,7 @@ import Tag from 'primevue/tag'
 import Button from 'primevue/button'
 import InputNumber from 'primevue/inputnumber'
 
+
 import App from './App.vue'
 import router from './router'
 
@@ -26,5 +27,6 @@ app.component('InputNumber', InputNumber)
 app.component('Carousel', Carousel)
 app.component('Tag', Tag)
 app.component('Button', Button)
+
 
 app.mount('#app')

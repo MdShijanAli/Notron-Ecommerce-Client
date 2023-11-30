@@ -20,8 +20,8 @@
             <div class="text-center">
               <div class="lg:pb-20 pb-10">
                 <h2 class="lg:text-h1 text-xl md:text-2xl text-primary font-light">Saving 50%</h2>
-              <h1 class="lg:text-head text-4xl md:text-5xl font-bold text-white py-5">All Online Store</h1>
-              <p class="lg:text-bannerParagraph text-xl text-white">OFFER AVAILABLE ALL SHOES & PRODUCTS</p>
+              <h1 class="lg:text-head text-3xl md:text-4xl font-bold text-white py-5">All Online Store</h1>
+              <p class="lg:text-bannerParagraph text-lg text-white">OFFER AVAILABLE ALL SHOES & PRODUCTS</p>
 
               </div>
           

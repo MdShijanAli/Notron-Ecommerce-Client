@@ -16,12 +16,13 @@ module.exports = {
         secondary: '#ffed4a',
         background: '#F4F4F4',
         paragraph: '#454545',
-        footer: '#222222',
+        footer: '#26292E',
         bannerBg: '#3F99F1',
         product: '#666666',
         headingPara: '#595959',
         savingBG: '#11141C',
         homeInfoBG: '#F3F3F3',
+        footerBottom: '#36393F'
         // Add more custom colors as needed
       },
       fontSize: {

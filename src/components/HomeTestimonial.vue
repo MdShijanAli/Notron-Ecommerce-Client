@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="max-w-7xl mx-auto px-6 py-10">
+    <div class="max-w-7xl mx-auto px-6 pt-10 pb-20">
             <TitleDescriptionSlot headline="Client Feedback" description="There are many variations of passages of Lorem Ipsum available"></TitleDescriptionSlot>
     
     
@@ -32,6 +32,8 @@
           </div>
         </div>
       </div>
+
+      
       <!-- End Card -->
     </div>
     <!-- End Grid -->

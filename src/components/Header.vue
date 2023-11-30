@@ -1,6 +1,6 @@
 <template>
   <!-- Header Top -->
-  <div class="bg-background">
+  <div class="bg-background hidden md:block">
     <div
       class="max-w-7xl mx-auto px-6 py-3 lg:flex lg:justify-between items-center"
     >

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="max-w-7xl mx-auto px-6 pb-10 pt-20">
+    <div class="max-w-7xl mx-auto px-6 pb-10 sm:pt-20 pt-10">
         <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
             <RouterLink v-for="item in items" :key="item.id" to="/shop" class="overflow-hidden">
               <div class="h-[430px] bg-no-repeat bg-cover overflow-hidden hover:scale-105 transition duration-500 ease-in-out " :style="{ backgroundImage: 'url(' + item.img + ')' }">

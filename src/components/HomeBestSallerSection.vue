@@ -3,34 +3,23 @@
     <div class="max-w-7xl mx-auto px-6 py-10">
         <TitleDesctiptionSlot headline="Best Seller" description="There are many variations of passages of Lorem Ipsum available"></TitleDesctiptionSlot>
    
-        <swiper
-    :slidesPerView="4"
-    :spaceBetween="30"
-    :loop="true"
-    :autoplay="{
-      delay: 1500,
-      disableOnInteraction: false,
-    }"
-    :pagination="{
-      clickable: true,
-    }"
-    :modules="modules"
-    class="mySwiper"
-  >
-    <swiper-slide v-for="product in products" :key="product.id">
-      <div class="group" >
-          <div class="border rounded-sm p-5 relative overflow-hidden">
+        <div class="card">
+          <!--  -->
+        <Carousel :value="products" :numVisible="4" :numScroll="1" :responsiveOptions="responsiveOptions" circular :autoplayInterval="3000">  
+            <template #item="{data}">
+                <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 group">
+                  <div class="border rounded-sm p-5 relative overflow-hidden">
             <img
               class="hover:scale-110 transition duration-500 ease-in-out"
-              :src="product?.img"
+              :src="data?.img"
               alt=""
             />
 
             <div
-              v-if="product.offer"
+              v-if="data?.offer"
               class="absolute top-5 left-5 bg-primary px-2 rounded-sm"
             >
-              <p class="text-white">{{ product?.offer }}</p>
+              <p class="text-white">{{ data?.offer }}</p>
             </div>
 
             <div
@@ -74,8 +63,8 @@
               </div>
 
               <div
-                @click="selectProduct(product)"
-                onclick="best_selling_product.showModal()"
+                @click="selectProduct(data)"
+                onclick="bestSellingProduct.showModal()"
                 class="border w-10 h-10 flex items-center justify-center rounded-sm bg-white hover:bg-primary transition duration-500 ease-in-out hover:text-white"
               >
                 <svg
@@ -97,174 +86,78 @@
           </div>
 
           <div class="mt-3">
-            <p class="text-sm text-product">{{ product.category }}</p>
-            <RouterLink to="/shop">
+            <p class="text-sm text-product">{{ data?.category }}</p>
+            <RouterLink :to="{name: 'product-details', params: {title: data.title.replace(/ /g, '-') } }">
               <h1 class="font-semibold my-1.5 hover:text-primary">
-                {{ product.title }}
+                {{ data?.title }}
               </h1>
             </RouterLink>
             <h1 class="text-product">
-              <span v-if="product.discountPrice" class="line-through"
-                >${{ product?.discountPrice }}  </span
-              > <span v-if="product.discountPrice">-</span>
-              ${{ product.price }}
+              <span v-if="data?.discountPrice" class="line-through"
+                >${{ data?.discountPrice }}  </span
+              > <span v-if="data?.discountPrice">-</span>
+              ${{ data?.price }}
             </h1>
           </div>
-        </div>
-  </swiper-slide>
-
-
-  
-  <dialog id="best_selling_product" class="modal">
-        <div class="modal-box w-11/12 max-w-5xl p-10 rounded-sm">
-          <form method="dialog">
-            <button
-              class="btn btn-sm border border-black btn-circle btn-ghost absolute right-2 top-2"
-            >
-              ✕
-            </button>
-          </form>
-          <div class="grid md:grid-cols-2 gap-10 mt-5">
-            <div class="h-full flex items-center justify-center">
-              <img class="w-[400px]" :src="selectedProduct.img" alt="" />
-            </div>
-            <div>
-              <h1 class="md:text-h2 text-xl font-semibold">{{ selectedProduct.title }}</h1>
-
-              <h1 class="md:text-bannerParagraph text-sm my-3">
-                <span v-if="selectedProduct.discountPrice" class="line-through mr-2">${{ selectedProduct.discountPrice }} </span>
-                <span class="text-primary"> ${{ selectedProduct.price }}</span>
-              </h1>
-
-              <p class="text-justify md:text-footerBody text-sm md:leading-7 leading-6 md:tracking-wide">
-                {{ selectedProduct.description }}
-              </p>
-
-              <div class="mt-10">
-                <div>
-                  <label
-                    for="size"
-                    class="block mb-2 text-sm font-semibold text-product"
-                    >Size:</label
-                  >
-                  <select
-                    id="size"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-primary focus:border-primary block w-full p-2.5"
-                  >
-                    <option value="s">s</option>
-                    <option value="mt-3">m</option>
-                    <option value="l">l</option>
-                    <option value="xl">xl</option>
-                  </select>
                 </div>
+            </template>
+        </Carousel>
+    </div>
 
-                <div class="mt-5">
-                  <label
-                    for="color"
-                    class="block mb-2 text-sm font-semibold text-product"
-                    >Color:</label
-                  >
-                  <select
-                    id="color"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-primary focus:border-primary block w-full p-2.5"
-                  >
-                    <option value="red">red</option>
-                    <option value="green">green</option>
-                    <option value="blue">blue</option>
-                    <option value="yellow">yellow</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="md:flex grid  md:justify-start gap-5 mt-5">
-                <div
-                  class="border border-black flex h-full items-center justify-center px-2 py-[3px]"
-                >
-                  <button class="text-3xl" @click="decrement">-</button>
-                  <input
-                    class="md:w-10 text-center px-2 border-none"
-                    type="text"
-                    v-model="counter"
-                  />
-                  <button class="text-2xl" @click="increment">+</button>
-                </div>
-                <div>
-                  <button
-                    class="uppercase w-full px-10 py-3 bg-black text-white hover:bg-primary transition duration-500 ease-in-out"
-                  >
-                    Add to cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <form method="dialog" class="modal-backdrop">
-    <button>close</button>
-  </form>
-      </dialog>
+    <ProductModal modal="bestSellingProduct" :selectedProduct="selectedProduct"></ProductModal>
+    
  
-  </swiper>
    
       </div>
   </div>
 </template>
-<script>
-import TitleDesctiptionSlot from '../components/TitleDescriptionSlot.vue'
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import {mapState} from "pinia"
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-
-
+<script setup>
+import TitleDesctiptionSlot from './TitleDescriptionSlot.vue'
+import { ref } from "vue";
 import {useProductStore} from "../stores/ProductStore"
-import { Autoplay } from 'swiper/modules';
+import ProductModal from './ProductModal.vue';
 
 
-export default {
-    components: {
-      Swiper,
-    SwiperSlide,
-    TitleDesctiptionSlot
-  },
 
-  data() {
-    return {
-      counter: 1,
-      selectedProduct: {},
-    }
-  },
-    setup() {
-      return {
-        modules: [Autoplay],
-      };
-  },
-
-  computed: {
-    ...mapState(useProductStore, {
-      products: "allProducts",
-
-    })
-
-  },
-
-  methods: {
-        selectProduct(product) {
-            this.selectedProduct = product;
-            // console.log(product.img);
-        },
-        increment() {
-            this.counter++;
-        },
-        decrement() {
-            if (this.counter > 0) {
-                this.counter--;
-            }
-        },
+const responsiveOptions = ref([
+    {
+        breakpoint: '1400px',
+        numVisible: 4,
+        numScroll: 1
     },
+    {
+        breakpoint: '1199px',
+        numVisible: 3,
+        numScroll: 1
+    },
+    {
+        breakpoint: '767px',
+        numVisible: 2,
+        numScroll: 1
+    },
+    {
+        breakpoint: '575px',
+        numVisible: 1,
+        numScroll: 1
+    }
+]);
 
-};
+
+const productStore = useProductStore();
+
+// Now you can access the data from the store
+const products = productStore.allProducts;
+
+const selectedProduct = ref(null);
+
+
+// console.log(products)
+
+const selectProduct = (product) => {
+        selectedProduct.value = product;
+        }
+
+
 </script>
 <style>
 

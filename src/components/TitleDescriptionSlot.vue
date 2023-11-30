@@ -1,7 +1,7 @@
 <template>
     <div class="text-center pb-12">
-        <h1 class="text-h1 font-semibold">{{ headline }}</h1>
-        <p class="text-h3 text-headingPara mt-3">
+        <h1 class="lg:text-h1 text-3xl md:text-4xl font-semibold">{{ headline }}</h1>
+        <p class="lg:text-h3 text-sm text-headingPara mt-3">
           {{ description }}
         </p>
         <slot></slot>
