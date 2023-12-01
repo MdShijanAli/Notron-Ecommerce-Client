@@ -35,6 +35,7 @@ module.exports = {
         'h1': '48px',
         'h2': '26px',
         'head': '60px',
+        'paragraph': '16px',
         'breadCrumbHeader': '58px'
         
         // 6 Extra Large
