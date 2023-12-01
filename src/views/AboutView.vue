@@ -1,11 +1,12 @@
 <template>
-  <div class="max-w-7xl mx-auto px-6 py-10">
-    <h1>This is About Page</h1>
-  </div>
+  <BreadCrumbSection pageTitle="About Us"/>
 </template>
 <script>
+import BreadCrumbSection from '../components/BreadCrumbSection.vue';
+
 export default {
-  name: "AboutView"
+    name: "AboutView",
+    components: { BreadCrumbSection }
 }
 </script>
 <style>

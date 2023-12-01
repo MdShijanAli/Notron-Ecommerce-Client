@@ -34,7 +34,8 @@ module.exports = {
         'ctah1': '36px',
         'h1': '48px',
         'h2': '26px',
-        'head': '60px'
+        'head': '60px',
+        'breadCrumbHeader': '58px'
         
         // 6 Extra Large
         // Add more custom font sizes as needed

@@ -1,11 +1,12 @@
 <template>
-  <div>
-    <h1>This is Contact Page</h1>
-  </div>
+  <BreadCrumbSection pageTitle="Contact Us"/>
 </template>
 <script>
+import BreadCrumbSection from '../components/BreadCrumbSection.vue';
+
 export default {
-  name: "ContactView"
+    name: "ContactView",
+    components: { BreadCrumbSection }
 }
 </script>
 <style>

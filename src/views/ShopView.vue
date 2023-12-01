@@ -1,11 +1,12 @@
 <template>
-  <div>
-    <h1>This is SHop Page</h1>
-  </div>
+  <BreadCrumbSection pageTitle="Shop"/>
 </template>
 <script>
+import BreadCrumbSection from '../components/BreadCrumbSection.vue';
+
 export default {
-  name: "ShopView"
+    name: "ShopView",
+    components: { BreadCrumbSection }
 }
 </script>
 <style>

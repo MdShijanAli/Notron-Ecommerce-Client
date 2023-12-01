@@ -5,7 +5,7 @@
    
         <div class="card">
           <!--  -->
-        <Carousel :value="products" :numVisible="4" :numScroll="1" :responsiveOptions="responsiveOptions" circular :autoplayInterval="3000">  
+        <Carousel :value="products" :numVisible="4" :numScroll="1" :responsiveOptions="responsiveOptions">  
             <template #item="{data}">
                 <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 group">
                   <div class="border rounded-sm p-5 relative overflow-hidden">

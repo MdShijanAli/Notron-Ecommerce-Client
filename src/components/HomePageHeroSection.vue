@@ -73,7 +73,7 @@ import img2 from "../assets/images/slider-04.webp";
       },
     ];
 
-    console.log(sliders);
+    // console.log(sliders);
 
     return {
       modules,

@@ -74,7 +74,7 @@
                   <button class="text-2xl" @click="increment">+</button>
                 </div>
                 <div>
-                  <button
+                  <button @click="addToCart(selectedProduct)"
                     class="uppercase w-full px-10 py-3 bg-black text-white hover:bg-primary transition duration-500 ease-in-out"
                   >
                     Add to cart
@@ -110,7 +110,30 @@ export default {
                 this.counter--;
             }
     },
+    addToCart(product) {
+      // Retrieve existing cart items from local storage or initialize an empty array
+      const existingCartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
+      // Check if the product is already in the cart
+      const existingProductIndex = existingCartItems.findIndex(item => item.id === product.id);
+
+      if (existingProductIndex !== -1) {
+        // If the product is already in the cart, you can update quantity or other properties
+        existingCartItems[existingProductIndex] = {
+          ...existingCartItems[existingProductIndex],
+          // Update other properties as needed
+        };
+      } else {
+        // If the product is not in the cart, add it
+        existingCartItems.push(product);
+      }
+
+      // Save the updated cart back to local storage
+      localStorage.setItem('cart', JSON.stringify(existingCartItems));
+
+      // You can also provide feedback to the user (optional)
+      alert('Product added to cart!');
+    },
 
   }
 }
