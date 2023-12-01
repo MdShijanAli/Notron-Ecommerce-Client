@@ -14,9 +14,7 @@
               </div>
           
                 <div class="lg:pb-10 pb-5">
-                  <RouterLink to="/shop" class="lg:px-20 px-8 py-3 lg:py-5 hover:bg-white border-2 border-primary transition duration-500 ease-in-out hover:text-black hover:border-primary hover:border-2 text-white font-semibold rounded-sm bg-primary">
-                  Shop Now
-                </RouterLink>
+                  <ButtonComponent title="Shop Now" path="/shop"/>
                 </div>
           
             </div>
@@ -26,16 +24,16 @@
 </template>
 <script>
 import img1 from '../assets/images/aboutinfornimg.webp';
+import ButtonComponent from './ButtonComponent.vue';
 
 export default {
-  name: "AboutInfoSection",
-
-
-  data() {
-    return {
-      img: img1
-    }
-  }
+    name: "AboutInfoSection",
+    data() {
+        return {
+            img: img1
+        };
+    },
+    components: { ButtonComponent }
 }
 </script>
 <style>

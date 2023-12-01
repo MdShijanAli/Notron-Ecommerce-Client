@@ -2,37 +2,43 @@
   <div class="bg-savingBG">
     <div class="max-w-7xl mx-auto px-6 py-20">
         <div class="grid lg:grid-cols-2 justify-center items-center gap-10">
-            <ImageHoverBox />
-            <div class="text-center">
-              <div class="lg:pb-20 pb-10">
-                <h2 class="lg:text-h1 text-xl md:text-2xl text-primary font-light">Saving 50%</h2>
-              <h1 class="lg:text-head text-3xl md:text-4xl font-bold text-white py-5">All Online Store</h1>
-              <p class="lg:text-bannerParagraph text-lg text-white">OFFER AVAILABLE ALL SHOES & PRODUCTS</p>
-
+          <div class="relative group">
+              <div class="">
+              <div class=" absolute sm:bottom-[60px] lg:bottom-[70px] lg:left-[130px] md:bottom-[100px] md:left-[120px] bottom-[100px] left-[30px] sm:left-[100px] z-20">
+                <span>
+                  <img class="w-[350px] h-auto group-hover:-translate-y-5 transition ease-in-out duration-500" :src="img1" alt="Image-HasTech">
+                </span>
               </div>
-          
-                <div class="lg:pb-10 pb-5">
-                  <RouterLink to="/shop" class="lg:px-20 px-8 py-3 lg:py-5 hover:bg-white border-2 border-black transition duration-500 ease-in-out hover:text-black hover:border-primary hover:border-2 text-white font-semibold rounded-sm bg-primary">
-                  Shop Now
-                </RouterLink>
-                </div>
-          
+              <div class="absolute left-0 bottom-0 z-10" >
+                <img class="w-[532px] h-[326px] group-hover:-translate-x-5 transition ease-in-out duration-500" :src="img2" alt="Image-HasTech">
+              </div>
+              <div class="sm:ml-20 ml-10">
+                <img :src="img3" width="280" height="339" alt="Image-HasTech">
+              </div>
             </div>
+            </div>
+
+           <SavingSection color="text-white" colorPara="text-white"/>
         </div>
     </div>
   </div>
 </template>
 <script>
-import ImageHoverBox from './ImageHoverBox.vue';
+import SavingSection from './SavingSection.vue';
+import shapeimg from '../assets/images/shape-img.webp'
+import shape from '../assets/images/shape.webp'
+import shape1 from '../assets/images/shape-1.webp'
 
 export default {
     name: "HomePageSaving",
     data() {
         return {
-            msg: "HomePageSaving"
+          img1: shapeimg,
+      img2: shape,
+      img3: shape1
         };
     },
-    components: { ImageHoverBox }
+    components: { SavingSection }
 }
 </script>
 <style scoped>

@@ -22,7 +22,8 @@ module.exports = {
         headingPara: '#595959',
         savingBG: '#11141C',
         homeInfoBG: '#F3F3F3',
-        footerBottom: '#36393F'
+        footerBottom: '#36393F',
+        aboutSection: '#F2F2F2'
         // Add more custom colors as needed
       },
       fontSize: {
