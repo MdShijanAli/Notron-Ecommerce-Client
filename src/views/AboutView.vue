@@ -21,6 +21,8 @@
   </div>
 
   <AboutInfoSection />
+
+  <TeamSection />
 </template>
 <script>
 import BreadCrumbSection from '../components/BreadCrumbSection.vue';
@@ -29,10 +31,11 @@ import bg1 from '../assets/images/bg1.webp'
 import SavingSection from '../components/SavingSection.vue';
 import ButtonComponent from '../components/ButtonComponent.vue';
 import aboutimg from '../assets/images/about2.webp'
+import TeamSection from '../components/TeamSection.vue'
 
 export default {
     name: "AboutView",
-    components: { BreadCrumbSection, AboutInfoSection, SavingSection, ButtonComponent },
+    components: { BreadCrumbSection, AboutInfoSection, SavingSection,TeamSection, ButtonComponent },
 
   data() {
     return {
