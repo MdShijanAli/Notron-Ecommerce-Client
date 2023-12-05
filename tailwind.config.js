@@ -35,6 +35,7 @@ module.exports = {
         'ctah1': '36px',
         'h1': '48px',
         'h2': '26px',
+        'h3': '20px',
         'head': '60px',
         'paragraph': '16px',
         'breadCrumbHeader': '58px'
