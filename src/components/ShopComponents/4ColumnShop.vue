@@ -39,12 +39,15 @@
         class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
       >
         <div class="group" v-for="product in productStore.products" :key="product.id">
-          <div class="border rounded-sm p-5 relative overflow-hidden">
-            <img
-              class="hover:scale-110 transition duration-500 ease-in-out"
-              :src="product?.img"
-              alt=""
-            />
+          <div class="border rounded-sm relative overflow-hidden">
+            <div class="relative group flex justify-center">
+                <Image preview 
+                          class="hover:scale-110 transition duration-500 ease-in-out"
+                          :src="product?.img"
+                          alt=""
+                        />
+
+              </div>
 
             <div
               v-if="product.offer"

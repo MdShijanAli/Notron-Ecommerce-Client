@@ -8,12 +8,15 @@
         <Carousel :value="productStore.products" :numVisible="4" :numScroll="1" :responsiveOptions="responsiveOptions">  
             <template #item="{data}">
                 <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 group">
-                  <div class="border rounded-sm p-5 relative overflow-hidden">
-            <img
-              class="hover:scale-110 transition duration-500 ease-in-out"
-              :src="data?.img"
-              alt=""
-            />
+                  <div class="border rounded-sm relative overflow-hidden">
+                    <div class="relative group flex justify-center">
+                <Image preview 
+                          class="hover:scale-110 transition duration-500 ease-in-out"
+                          :src="data?.img"
+                          alt=""
+                        />
+
+              </div>
 
             <div
               v-if="data?.offer"

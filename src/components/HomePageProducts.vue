@@ -11,13 +11,15 @@
         class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
       >
         <div class="group" v-for="product in productStore.products" :key="product.id">
-          <div class="border rounded-sm p-5 relative overflow-hidden">
-            <img
-              class="hover:scale-110 transition duration-500 ease-in-out"
-              :src="product?.img"
-              alt=""
-            />
+          <div class="border rounded-sm relative px-0 overflow-hidden ">
+              <div class="relative group flex justify-center">
+                <Image preview 
+                          class="hover:scale-110 transition duration-500 ease-in-out"
+                          :src="product?.img"
+                          alt=""
+                        />
 
+              </div>
             <div
               v-if="product.offer"
               class="absolute top-5 left-5 bg-primary px-2 rounded-sm"
@@ -148,4 +150,12 @@ export default {
     components: { TitleDescriptionSlot, ProductModal }
 };
 </script>
-<style></style>
+<style>
+button.p-image-action.p-link {
+    color: white;
+}
+button.p-image-preview-indicator {
+    color: white !important;
+    z-index: 999;
+}
+</style>
