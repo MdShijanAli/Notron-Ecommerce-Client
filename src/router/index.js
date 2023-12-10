@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from "../views/HomePage.vue"
 import ProductDetailsPage from "../views/ProductDetailsPage.vue"
+import PrivacyPolicy from "../views/PrivacyPolicy.vue"
+import TermaCondition from "../views/TermsCondition.vue"
+import ReturnRefund from "../views/ReturnRefund.vue"
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -33,6 +37,21 @@ const router = createRouter({
       path: '/product/:title',
       name: 'product-details',
       component: ProductDetailsPage
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: PrivacyPolicy
+    },
+    {
+      path: '/terms-condition',
+      name: 'terms-condition',
+      component: TermaCondition
+    },
+    {
+      path: '/return-refund',
+      name: 'return-refund',
+      component: ReturnRefund
     },
     /* {
       path: '/about',

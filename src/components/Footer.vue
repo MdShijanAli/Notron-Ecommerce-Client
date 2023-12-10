@@ -190,7 +190,7 @@
                 </li>
                 <li class="my-3.5">
                   <RouterLink
-                    to="/"
+                    to="/contact"
                     class="text-footerBody text-[#bbbbbb] flex gap-2 hover:text-primary transition duration-500 ease-in-out items-center"
                   >
                     <svg
@@ -256,7 +256,7 @@
                 </li>
                 <li class="my-3.5">
                   <RouterLink
-                    to="/"
+                    to="/privacy-policy"
                     class="text-footerBody text-[#bbbbbb] flex gap-2 hover:text-primary transition duration-500 ease-in-out items-center"
                   >
                     <svg
@@ -413,7 +413,7 @@
                 </li>
                 <li class="my-3.5">
                   <RouterLink
-                    to="/"
+                    to="/return-refund"
                     class="text-footerBody text-[#bbbbbb] flex gap-2 hover:text-primary transition duration-500 ease-in-out items-center"
                   >
                     <svg
@@ -512,7 +512,7 @@
                 </li>
                 <li class="my-3.5">
                   <RouterLink
-                    to="/"
+                    to="/blog"
                     class="text-footerBody text-[#bbbbbb] flex gap-2 hover:text-primary transition duration-500 ease-in-out items-center"
                   >
                     <svg
@@ -534,7 +534,7 @@
                 </li>
                 <li class="my-3.5">
                   <RouterLink
-                    to="/"
+                    to="/shop"
                     class="text-footerBody text-[#bbbbbb] flex gap-2 hover:text-primary transition duration-500 ease-in-out items-center"
                   >
                     <svg
@@ -556,7 +556,7 @@
                 </li>
                 <li class="my-3.5">
                   <RouterLink
-                    to="/"
+                    to="/terms-condition"
                     class="text-footerBody text-[#bbbbbb] flex gap-2 hover:text-primary transition duration-500 ease-in-out items-center"
                   >
                     <svg
