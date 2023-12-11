@@ -169,5 +169,15 @@ const selectProduct = (product) => {
 
 </script>
 <style>
+button.p-carousel-prev.p-link,
+button.p-carousel-next.p-link {
+    border: 1px solid #EB3E32;
+    color: #EB3E32;
+}
 
+button.p-carousel-prev.p-link:hover,
+button.p-carousel-next.p-link:hover {
+    background-color: #EB3E32;
+    color: white;
+}
 </style>
