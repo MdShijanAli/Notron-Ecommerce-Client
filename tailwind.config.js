@@ -28,7 +28,7 @@ module.exports = {
       },
       fontSize: {
             // 5 Extra Large
-        'h3': '18px',
+   
         'footerBody': '14px',
         'banner': '80px',
         'bannerParagraph': '24px',
@@ -38,7 +38,7 @@ module.exports = {
         'h3': '20px',
         'head': '60px',
         'paragraph': '16px',
-        'breadCrumbHeader': '58px'
+        'breadCrumbHeader': '58px',
         
         // 6 Extra Large
         // Add more custom font sizes as needed
