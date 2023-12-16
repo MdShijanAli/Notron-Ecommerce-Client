@@ -11,8 +11,14 @@
      
         <div class="grid grid-cols-2 gap-10">
               <div>
-                 <div class="border rounded-md">
-                       <img class="w-full" :src="currentProduct.img" alt="">
+                 <div class="border rounded-md h-[550px]">
+                       <img class="w-full h-full" :src="mainImage" alt="">
+                 </div>
+
+                 <div class="mt-5 flex gap-5">
+                  <div @click="selectIMG(img)" v-for="(img,i) in images" :key="i" class="h-36 border">
+                    <img class="w-full h-full" :src="img" alt="img">
+                  </div>
                  </div>
               </div>
               <div>
@@ -62,6 +68,45 @@
                       </ul>
                     </div>
                   </div>
+
+                  <div class="flex gap-5 items-center my-5">
+                    <div>
+                      <input type="text" v-model="count" class="border border-gray-200 w-16 h-10 text-center focus:border-gray-200 focus:ring-0">
+                      <div class="flex">
+                        <p @click="count > 1 ? count-- : 1" class="w-8 h-6 flex items-center justify-center border hover:bg-primary group"><i class="pi pi-minus text-xs font-semibold group-hover:text-white"></i></p>
+                        <p @click="count++" class="w-8 h-6 flex items-center justify-center border hover:bg-primary group"><i class="pi pi-plus text-xs font-semibold group-hover:text-white"></i></p>
+                      </div>
+                    </div>
+                    <div>
+                      <ButtonComponent title="Add to Cart" path="/"></ButtonComponent>
+                    </div>
+                  </div>
+
+                  <div class="flex gap-10 pt-5 items-center">
+                    <div class="flex gap-3 items-center">
+                      <i class="pi pi-heart text-primary text-xl font-medium"></i>
+                      <RouterLink to="/wish-list">
+                        <p class="text-[#424242] text-[18px] hover:text-primary">Add to Wishlist</p>
+                      </RouterLink>
+                    </div>
+                    <div class="flex gap-3 items-center">
+                      <img class="w-7" src="/images/shuffle.png" alt="">
+                      <RouterLink to="/wish-list">
+                        <p class="text-[#424242] text-[18px] hover:text-primary">Add to Compare</p>
+                      </RouterLink>
+                    </div>
+                  </div>
+
+                  <div class="divider"></div>
+
+                  <div class="flex items-center justify-between">
+                    <p><span class="text-primary">Code : </span> Ch-256xl</p>
+                    <p><span class="text-primary">Share </span> 
+                    <i class="pi pi-facebook text-gray-500 mx-1 hover:text-primary"></i>
+                    <i class="pi pi-twitter text-gray-500 mx-1 hover:text-primary"></i>
+                    <i class="pi pi-linkedin text-gray-500 mx-1 hover:text-primary"></i>
+                    </p>
+                  </div>
                 </div>
               </div>
         </div>
@@ -73,14 +118,18 @@ import BreadCrumbSection from '../components/BreadCrumbSection.vue';
 import LoadingComponent from '../components/LoadingComponent.vue'
 import { useProductStore } from '../stores/ProductStore';
 import { onMounted } from 'vue';
+import ButtonComponent from '../components/ButtonComponent.vue'
+import { RouterLink } from 'vue-router';
 
 
 export default {
     name: "ProductDetailsPage",
-    components: { BreadCrumbSection,LoadingComponent },
+    components: { BreadCrumbSection, LoadingComponent, ButtonComponent, RouterLink },
 
   data() {
     return {
+      mainImage: "",
+      count: 1,
       loading: false,
       currentProduct: {},
       responsiveOptions: [
@@ -92,7 +141,8 @@ export default {
                     breakpoint: '575px',
                     numVisible: 1
                 }
-            ]
+      ],
+      images: ['/images/product-2.webp','/images/product-3.webp', '/images/product-4.webp','/images/product-5.webp']
       }
   },
   watch: {
@@ -107,6 +157,7 @@ export default {
   mounted() {
     this.updateCurrentProduct();
     // console.log(this.currentProduct)
+    
   },
 
 
@@ -123,12 +174,16 @@ export default {
 
     // Assuming the title is a unique identifier for the product
     this.currentProduct = this.productStore.products.find(product => product.title.replace(/ /g, '-') === title);
+    this.mainImage = this.currentProduct.img
   } catch (error) {
     console.error('Error fetching product details:', error);
   } finally {
     this.loading = false;
   }
-}
+    },
+    selectIMG(img) {
+      this.mainImage = img
+    }
 
   },
 
