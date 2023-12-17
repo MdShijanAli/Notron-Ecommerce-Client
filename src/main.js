@@ -3,6 +3,7 @@ import 'primevue/resources/themes/lara-light-indigo/theme.css';
 import "primevue/resources/primevue.min.css"; /* Deprecated */
 import "primeicons/primeicons.css";
 import './style.css'
+import "./flags.css";
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

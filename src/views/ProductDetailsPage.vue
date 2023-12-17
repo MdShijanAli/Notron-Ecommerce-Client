@@ -11,12 +11,12 @@
      
         <div class="grid grid-cols-2 gap-10">
               <div>
-                 <div class="border rounded-md h-[550px]">
+                 <div class="border-2 rounded-md h-[550px]">
                        <img class="w-full h-full" :src="mainImage" alt="">
                  </div>
 
                  <div class="mt-5 flex gap-5">
-                  <div @click="selectIMG(img)" v-for="(img,i) in images" :key="i" class="h-36 border">
+                  <div @click="selectIMG(img)" v-for="(img,i) in images" :key="i" class="h-36 border-2 rounded-md">
                     <img class="w-full h-full" :src="img" alt="img">
                   </div>
                  </div>
@@ -110,6 +110,42 @@
                 </div>
               </div>
         </div>
+
+        <div>
+          <div class="py-20">
+            <div class=" px-4">
+  <nav class="flex space-x-2 justify-center" aria-label="Tabs" role="tablist">
+    <button type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary active" id="basic-tabs-item-1" data-hs-tab="#basic-tabs-1" aria-controls="basic-tabs-1" role="tab">
+      Information
+    </button>
+    <button type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary" id="basic-tabs-item-2" data-hs-tab="#basic-tabs-2" aria-controls="basic-tabs-2" role="tab">
+      Description
+    </button>
+    <button type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary" id="basic-tabs-item-3" data-hs-tab="#basic-tabs-3" aria-controls="basic-tabs-3" role="tab">
+      Reviews (05)
+    </button>
+  </nav>
+</div>
+
+<div class="p-10 border">
+  <div id="basic-tabs-1" role="tabpanel" aria-labelledby="basic-tabs-item-1">
+    <p class="text-gray-700 tracking-wider text-justify">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adlo minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in tun tuni reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserun mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rel aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.
+    </p>
+  </div>
+  <div id="basic-tabs-2" class="hidden" role="tabpanel" aria-labelledby="basic-tabs-item-2">
+    <p class="text-gray-700 tracking-wider text-justify">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adlo minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in tun tuni reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserun mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rel aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.
+    </p>
+  </div>
+  <div id="basic-tabs-3" class="hidden" role="tabpanel" aria-labelledby="basic-tabs-item-3">
+    <p class="text-gray-500 dark:text-gray-400">
+      This is the <em class="font-semibold text-gray-800 dark:text-gray-200">third</em> item's tab body.
+    </p>
+  </div>
+</div>
+    </div>
+        </div>
     </div>
   </div>
 </template>
@@ -202,6 +238,11 @@ export default {
 
 }
 </script>
-<style>
-  
+<style scoped>
+.p-tabview-nav {
+    display: flex;
+    justify-content: center !important;
+}
+
+@import "primeflex/primeflex.css";
 </style>
