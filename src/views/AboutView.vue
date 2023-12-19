@@ -25,11 +25,11 @@
   <TeamSection />
 </template>
 <script>
-import BreadCrumbSection from '../components/BreadCrumbSection.vue';
+import BreadCrumbSection from '../components/global/breadCrumbSection.vue';
 import AboutInfoSection from '../components/AboutInfoSection.vue';
 import bg1 from '../assets/images/bg1.webp'
-import SavingSection from '../components/SavingSection.vue';
-import ButtonComponent from '../components/ButtonComponent.vue';
+import SavingSection from '../components/HomePageSections/SavingSection.vue';
+import ButtonComponent from '../components/global/ButtonComponent.vue';
 import aboutimg from '../assets/images/about2.webp'
 import TeamSection from '../components/TeamSection.vue'
 

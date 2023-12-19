@@ -12,12 +12,12 @@
         <div class="grid grid-cols-2 gap-10">
               <div>
                  <div class="border-2 rounded-md h-[550px]">
-                       <img class="w-full h-full" :src="mainImage" alt="">
+                       <img class="w-full h-full rounded-md" :src="mainImage" alt="">
                  </div>
 
                  <div class="mt-5 flex gap-5">
                   <div @click="selectIMG(img)" v-for="(img,i) in images" :key="i" class="h-36 border-2 rounded-md">
-                    <img class="w-full h-full" :src="img" alt="img">
+                    <img class="w-full h-full rounded-md" :src="img" alt="img">
                   </div>
                  </div>
               </div>
@@ -122,7 +122,7 @@
       Description
     </button>
     <button type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary" id="basic-tabs-item-3" data-hs-tab="#basic-tabs-3" aria-controls="basic-tabs-3" role="tab">
-      Reviews (05)
+      Reviews ({{ reviews.length }})
     </button>
   </nav>
 </div>
@@ -150,12 +150,13 @@
   </div>
 </template>
 <script>
-import BreadCrumbSection from '../components/BreadCrumbSection.vue';
-import LoadingComponent from '../components/LoadingComponent.vue'
+import BreadCrumbSection from '../components/global/BreadCrumbSection.vue';
+import LoadingComponent from '../components/global/LoadingComponent.vue'
 import { useProductStore } from '../stores/ProductStore';
 import { onMounted } from 'vue';
-import ButtonComponent from '../components/ButtonComponent.vue'
+import ButtonComponent from '../components/global/ButtonComponent.vue'
 import { RouterLink } from 'vue-router';
+import axios from 'axios'
 
 
 export default {
@@ -168,6 +169,7 @@ export default {
       count: 1,
       loading: false,
       currentProduct: {},
+      reviews: [],
       responsiveOptions: [
                 {
                     breakpoint: '1300px',
@@ -200,6 +202,25 @@ export default {
 
 
   methods: {
+
+    async fetchReviews(currentProduct) {
+      const id = currentProduct.id
+      this.loading = true;
+      
+      try {
+        const response = await axios.get(`http://localhost:3000/api/reviews/${id}`);
+
+        this.reviews = response.data;
+        console.log('Fetched reviews:', this.reviews);
+
+      }catch (error) {
+        console.error('Error fetching reviews:', error.message);
+      } finally {
+        this.loading = false;
+      }
+      
+    },
+
   async updateCurrentProduct() {
   this.loading = true;
   const title = this.$route.params.title;
@@ -215,6 +236,7 @@ export default {
     console.error('Error fetching product details:', error);
   } finally {
     this.loading = false;
+    this.fetchReviews(this.currentProduct)
   }
     },
     selectIMG(img) {

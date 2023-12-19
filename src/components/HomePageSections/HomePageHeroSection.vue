@@ -32,8 +32,8 @@
 
 </template>
 <script>
-import img1 from "../assets/images/slider-02.webp";
-import img2 from "../assets/images/slider-04.webp";
+import img1 from "@/assets/images/slider-02.webp";
+import img2 from "@/assets/images/slider-04.webp";
   // Import Swiper Vue.js components
   import { Swiper, SwiperSlide } from 'swiper/vue';
 

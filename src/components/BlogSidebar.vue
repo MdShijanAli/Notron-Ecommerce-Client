@@ -88,7 +88,7 @@
   </div>
 </template>
 <script>
-import { useBlogStore } from '../stores/blogStore';
+import { useBlogStore } from '@/stores/blogStore';
 import { onMounted } from 'vue';
 
 

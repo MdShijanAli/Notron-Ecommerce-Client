@@ -242,7 +242,7 @@
   </div>
 </template>
 <script>
-import BreadCrumbSection from '../components/BreadCrumbSection.vue';
+import BreadCrumbSection from '../components/global/BreadCrumbSection.vue';
 
 export default {
     components: { BreadCrumbSection }

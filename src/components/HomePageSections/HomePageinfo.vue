@@ -17,23 +17,23 @@
         </div>
 
         <div class="absolute top-0 left-32">
-          <img src="../assets/images/shadow1.webp" alt="">
+          <img src="@/assets/images/shadow1.webp" alt="">
         </div>
         <div class="absolute bottom-0 right-0">
-          <img src="../assets/images/shadow2.webp" alt="">
+          <img src="@/assets/images/shadow2.webp" alt="">
         </div>
         <div class="absolute bottom-0 left-0">
-          <img src="../assets/images/shadow3.webp" alt="">
+          <img src="@/assets/images/shadow3.webp" alt="">
         </div>
         <div class="absolute top-0 right-52">
-          <img src="../assets/images/shadow4.webp" alt="">
+          <img src="@/assets/images/shadow4.webp" alt="">
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-  import img1 from "../components/icons/discount-voucher-icon.svg"
+  import img1 from "@/components/icons/discount-voucher-icon.svg"
 export default {
   name: "HomePageInfo",
 

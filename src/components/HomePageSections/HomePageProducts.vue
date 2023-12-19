@@ -2,7 +2,7 @@
   <div>
     <div class="max-w-7xl mx-auto px-6 sm:py-20 pb-10">
  
-      <TitleDescriptionSlot 
+      <TitleDescriptionSlot
       headline="Featured Items" 
       description="There are many variations of passages of Lorem Ipsum available" >
     </TitleDescriptionSlot>
@@ -115,9 +115,9 @@
 </template>
 <script>
 import { ref, onMounted } from 'vue';
-import TitleDescriptionSlot from "./TitleDescriptionSlot.vue";
-import ProductModal from "../components/ProductModal.vue";
-import { useProductStore } from "../stores/ProductStore";
+import ProductModal from "../ProductModal.vue";
+import { useProductStore } from "@/stores/ProductStore";
+import TitleDescriptionSlot from '../global/TitleDescriptionSlot.vue';
 
 
 export default {
@@ -147,7 +147,7 @@ export default {
       productStore
     }
     },
-    components: { TitleDescriptionSlot, ProductModal }
+    components: { ProductModal, TitleDescriptionSlot }
 };
 </script>
 <style>

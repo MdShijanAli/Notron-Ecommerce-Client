@@ -25,9 +25,9 @@
 </template>
 <script>
 import SavingSection from './SavingSection.vue';
-import shapeimg from '../assets/images/shape-img.webp'
-import shape from '../assets/images/shape.webp'
-import shape1 from '../assets/images/shape-1.webp'
+import shapeimg from '@/assets/images/shape-img.webp'
+import shape from '@/assets/images/shape.webp'
+import shape1 from '@/assets/images/shape-1.webp'
 
 export default {
     name: "HomePageSaving",

@@ -65,7 +65,7 @@
       <div>
         <img
           class="lg:w-full w-[150px]"
-          src="../assets/images/logo.webp"
+          src="@/assets/images/logo.webp"
           alt=""
         />
       </div>

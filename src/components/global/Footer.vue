@@ -605,7 +605,7 @@
   </div>
 </template>
 <script>
-import paymentImg from '../assets/images/payment-card.webp'
+import paymentImg from '@/assets/images/payment-card.webp'
 export default {
   name: "Footer",
 

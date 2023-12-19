@@ -42,7 +42,7 @@
 </template>
 <script>
 import { RouterLink } from 'vue-router';
-import BreadCrumbSection from '../components/BreadCrumbSection.vue';
+import BreadCrumbSection from '../components/global/BreadCrumbSection.vue';
 import { useBlogStore } from '../stores/blogStore';
 import { onMounted } from 'vue';
 import BlogSideBar from '../components/BlogSidebar.vue'

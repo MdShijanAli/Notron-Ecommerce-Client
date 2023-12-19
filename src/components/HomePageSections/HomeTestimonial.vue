@@ -50,10 +50,10 @@
   </div>
 </template>
 <script setup>
-import TitleDescriptionSlot from './TitleDescriptionSlot.vue';
-import img1 from "../assets/images/client-1.avif"
-import img2 from "../assets/images/client-2.avif"
-import img3 from "../assets/images/client-3.avif"
+import TitleDescriptionSlot from '../global/TitleDescriptionSlot.vue';
+import img1 from "@/assets/images/client-1.avif"
+import img2 from "@/assets/images/client-2.avif"
+import img3 from "@/assets/images/client-3.avif"
 import { ref } from "vue";
 
 

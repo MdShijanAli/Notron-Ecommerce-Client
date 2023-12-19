@@ -23,8 +23,8 @@
   </div>
 </template>
 <script>
-import img1 from '../assets/images/aboutinfornimg.webp';
-import ButtonComponent from './ButtonComponent.vue';
+import img1 from '@/assets/images/aboutinfornimg.webp';
+import ButtonComponent from './global/ButtonComponent.vue';
 
 export default {
     name: "AboutInfoSection",

@@ -3,7 +3,7 @@
   <ColumnShop4 />
 </template>
 <script>
-import BreadCrumbSection from '../components/BreadCrumbSection.vue';
+import BreadCrumbSection from '../components/global/BreadCrumbSection.vue';
 import ColumnShop4 from '../components/ShopComponents/4ColumnShop.vue';
 
 

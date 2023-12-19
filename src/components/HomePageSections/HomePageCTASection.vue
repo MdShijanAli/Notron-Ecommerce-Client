@@ -17,9 +17,9 @@
 </template>
 <script>
 import { RouterLink } from 'vue-router';
-import img1 from "../assets/images/1.webp"
-import img2 from "../assets/images/cta2.webp"
-import img3 from "../assets/images/3.webp"
+import img1 from "@/assets/images/1.webp"
+import img2 from "@/assets/images/cta2.webp"
+import img3 from "@/assets/images/3.webp"
 
 
 export default {

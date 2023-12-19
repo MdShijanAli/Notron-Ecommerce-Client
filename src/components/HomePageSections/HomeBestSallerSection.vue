@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="max-w-7xl mx-auto px-6 py-10">
-        <TitleDesctiptionSlot headline="Best Seller" description="There are many variations of passages of Lorem Ipsum available"></TitleDesctiptionSlot>
+        <TitleDescriptionSlot headline="Best Seller" description="There are many variations of passages of Lorem Ipsum available"></TitleDescriptionSlot>
    
         <div class="card">
           <!--  -->
@@ -115,10 +115,10 @@
   </div>
 </template>
 <script setup>
-import TitleDesctiptionSlot from './TitleDescriptionSlot.vue'
+import TitleDescriptionSlot from "../global/TitleDescriptionSlot.vue";
 import { ref,onMounted } from "vue";
-import {useProductStore} from "../stores/ProductStore"
-import ProductModal from './ProductModal.vue';
+import {useProductStore} from "@/stores/ProductStore"
+import ProductModal from '../ProductModal.vue';
 
 
 

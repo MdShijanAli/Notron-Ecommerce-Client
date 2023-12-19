@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import breaddcurmbimg from '../assets/images/breadCrumbSection.webp'
+import breaddcurmbimg from '@/assets/images/breadCrumbSection.webp'
 
 
 export default {
