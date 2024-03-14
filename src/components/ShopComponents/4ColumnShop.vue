@@ -4,7 +4,7 @@
     <div class="max-w-7xl mx-auto px-6 py-10">
             <div class="grid sm:grid-cols-3 border py-2 px-5 items-center justify-between">
                  <div>
-                    <p>Total Products: <span class="text-primary">{{ productStore.products.length }}</span></p>
+                    <p>Total Products: <span class="text-primary">{{ store.products.length }}</span></p>
                  </div>
                  <div class="flex gap-5 items-center justify-center">
                     <div>
@@ -38,7 +38,7 @@
             <div
         class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
       >
-        <div class="group" v-for="product in productStore.products" :key="product.id">
+        <div class="group" v-for="product in store.products" :key="product.id">
           <div class="border rounded-sm relative overflow-hidden">
             <div class="relative group flex justify-center">
                 <Image preview 
@@ -142,39 +142,23 @@
         </div>
     </div>
 </template>
-<script>
-import {onMounted} from 'vue'
-import { useProductStore } from '../../stores/ProductStore';
+<script setup>
+import {onMounted,ref} from 'vue'
+import { useProductStore } from '@/stores/ProductStore';
 import ProductModal from '../ProductModal.vue';
 
-export default {
-    name: "4ColumnShop",
-    data() {
-        return {
-            selectedProduct: {},
-        };
-    },
-  
-    methods: {
-        selectProduct(product) {
-            this.selectedProduct = product;
-        // console.log(product.img);
-            // console.log(product)
-        },
-        
-  },
-    setup() {
-        const productStore = useProductStore();
-        onMounted(() => {
-            productStore.fetchProducts();
-            console.log(productStore);
-        });
-        return {
-            productStore
-        };
-    },
-    components: { ProductModal }
-}
+  const store = useProductStore()
+  console.log('store', store.products)
+  const selectedProduct = ref({})
+
+  const selectProduct = (product) => {
+    selectedProduct.value = product;
+  }
+
+  onMounted(() => {
+  store.fetchProducts();
+  });
+
 </script>
 <style>
     

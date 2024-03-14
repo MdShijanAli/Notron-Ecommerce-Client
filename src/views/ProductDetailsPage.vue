@@ -1,5 +1,6 @@
 <template>
-  <BreadCrumbSection pageTitle="Product Detials"/>
+  <div>
+    <BreadCrumbSection pageTitle="Product Detials"/>
   <div>
     <!-- Conditionally render the loading component when loading is true -->
     <div v-if="loading">
@@ -15,8 +16,8 @@
                        <img class="w-full h-full rounded-md" :src="mainImage" alt="">
                  </div>
 
-                 <div class="mt-5 flex gap-5">
-                  <div @click="selectIMG(img)" v-for="(img,i) in images" :key="i" class="h-36 border-2 rounded-md">
+                 <div class="mt-5 grid grid-cols-4 gap-5">
+                  <div @click="selectIMG(img)" v-for="(img,i) in images" :key="i" class="h-32 w-full border-2 rounded-md">
                     <img class="w-full h-full rounded-md" :src="img" alt="img">
                   </div>
                  </div>
@@ -60,6 +61,8 @@
                     <p class="font-medium text-xl">Size</p>
 
                     <div>
+                      {{ currentProduct?.size }}
+                      {{ currentProduct?.color }}
                       <ul class="flex gap-5">
                         <li class="w-9 h-9 rounded-full bg-gray-300 border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary flex items-center justify-center"><a class="text-md" href="">S</a></li>
                         <li class="w-9 h-9 rounded-full bg-gray-300 border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary flex items-center justify-center"><a class="text-md" href="">M</a></li>
@@ -115,13 +118,13 @@
           <div class="py-20">
             <div class=" px-4">
   <nav class="flex space-x-2 justify-center" aria-label="Tabs" role="tablist">
-    <button type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary active" id="basic-tabs-item-1" data-hs-tab="#basic-tabs-1" aria-controls="basic-tabs-1" role="tab">
+    <button @click="selectTab('Information')" type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary active" id="basic-tabs-item-1" data-hs-tab="#basic-tabs-1" aria-controls="basic-tabs-1" role="tab">
       Information
     </button>
-    <button type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary" id="basic-tabs-item-2" data-hs-tab="#basic-tabs-2" aria-controls="basic-tabs-2" role="tab">
+    <button @click="selectTab('Description')" type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary" id="basic-tabs-item-2" data-hs-tab="#basic-tabs-2" aria-controls="basic-tabs-2" role="tab">
       Description
     </button>
-    <button type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary" id="basic-tabs-item-3" data-hs-tab="#basic-tabs-3" aria-controls="basic-tabs-3" role="tab">
+    <button @click="selectTab('Reviews')" type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary" id="basic-tabs-item-3" data-hs-tab="#basic-tabs-3" aria-controls="basic-tabs-3" role="tab">
       Reviews ({{ reviews.length }})
     </button>
   </nav>
@@ -148,15 +151,16 @@
         </div>
     </div>
   </div>
+  </div>
 </template>
 <script>
-import BreadCrumbSection from '../components/global/BreadCrumbSection.vue';
-import LoadingComponent from '../components/global/LoadingComponent.vue'
-import { useProductStore } from '../stores/ProductStore';
+import axios from 'axios';
 import { onMounted } from 'vue';
-import ButtonComponent from '../components/global/ButtonComponent.vue'
 import { RouterLink } from 'vue-router';
-import axios from 'axios'
+import BreadCrumbSection from '../components/global/BreadCrumbSection.vue';
+import ButtonComponent from '../components/global/ButtonComponent.vue';
+import LoadingComponent from '../components/global/LoadingComponent.vue';
+import { useProductStore } from '../stores/ProductStore';
 
 
 export default {
@@ -166,6 +170,8 @@ export default {
   data() {
     return {
       mainImage: "",
+      information: "",
+      description: "",
       count: 1,
       loading: false,
       currentProduct: {},
@@ -180,7 +186,8 @@ export default {
                     numVisible: 1
                 }
       ],
-      images: ['/images/product-2.webp','/images/product-3.webp', '/images/product-4.webp','/images/product-5.webp']
+      images: ['/images/product-2.webp','/images/product-3.webp', '/images/product-4.webp','/images/product-5.webp'],
+      selectedSize: ''
       }
   },
   watch: {
@@ -194,7 +201,7 @@ export default {
 
   mounted() {
     this.updateCurrentProduct();
-    // console.log(this.currentProduct)
+    // console.log('current products', this.currentProduct.length)
     
   },
 
@@ -225,12 +232,10 @@ export default {
   this.loading = true;
   const title = this.$route.params.title;
   try {
-    await this.productStore.fetchProducts();
-    console.log(title);
-    console.log(this.productStore.products);
+    await this.store.fetchProducts();
 
     // Assuming the title is a unique identifier for the product
-    this.currentProduct = this.productStore.products.find(product => product.title.replace(/ /g, '-') === title);
+    this.currentProduct = this.store.products.find(product => product.title.replace(/ /g, '-') === title);
     this.mainImage = this.currentProduct.img
   } catch (error) {
     console.error('Error fetching product details:', error);
@@ -241,19 +246,32 @@ export default {
     },
     selectIMG(img) {
       this.mainImage = img
+    },
+
+    selectTab(val) {
+      console.log(val)
+      if (val === 'Information') {
+        this.information = this.currentProduct.information
+        return
+      }
+      else if (val === 'Description') {
+        this.description = this.currentProduct.long_description
+        return
+      }
+      
     }
 
   },
 
 
   setup() {
-        const productStore = useProductStore();
+        const store = useProductStore();
         onMounted(async () => {
-          await productStore.fetchProducts();
+          await store.fetchProducts();
           // console.log(productStore.products);
         });
         return {
-            productStore
+          store
         };
     },
  
