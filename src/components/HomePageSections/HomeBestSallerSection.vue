@@ -90,7 +90,8 @@
 
           <div class="mt-3">
             <p class="text-sm text-product">{{ data?.category }}</p>
-            <RouterLink :to="{name: 'product-details', params: {title: data.title.replace(/ /g, '-') } }">
+            <!-- :to="{name: 'product-details', params: {title: data.title.replace(/ /g, '-') } }" -->
+            <RouterLink  to="/">
               <h1 class="font-semibold my-1.5 hover:text-primary">
                 {{ data?.title }}
               </h1>
@@ -115,10 +116,10 @@
   </div>
 </template>
 <script setup>
-import TitleDescriptionSlot from "../global/TitleDescriptionSlot.vue";
-import { ref,onMounted } from "vue";
-import {useProductStore} from "@/stores/ProductStore"
+import { useProductStore } from "@/stores/ProductStore";
+import { onMounted, ref } from "vue";
 import ProductModal from '../ProductModal.vue';
+import TitleDescriptionSlot from "../global/TitleDescriptionSlot.vue";
 
 
 

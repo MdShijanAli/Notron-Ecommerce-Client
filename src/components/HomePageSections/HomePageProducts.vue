@@ -10,7 +10,7 @@
       <div
         class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
       >
-        <div class="group" v-for="product in productStore.products" :key="product.id">
+        <div class="group" v-for="product in productLists" :key="product.id">
           <div class="border rounded-sm relative px-0 overflow-hidden ">
               <div class="relative group flex justify-center">
                 <Image preview 
@@ -92,7 +92,8 @@
 
           <div class="mt-3">
             <p class="text-sm text-product">{{ product.category }}</p>
-            <RouterLink :to="{name: 'product-details', params: {title: product.title.replace(/ /g, '-') } }">
+            <!-- :to="{name: 'product-details', params: {title: product?.title.replace(/ /g, '-') } } -->
+            <RouterLink to="/">
               <h1 class="font-semibold my-1.5 hover:text-primary">
                 {{ product.title }}
               </h1>
@@ -113,42 +114,30 @@
     </div>
   </div>
 </template>
-<script>
-import { ref, onMounted } from 'vue';
+<script setup>
+import { onMounted, ref } from 'vue';
+import { useProducts } from '../../compositions/useProducts';
+import { useProductStore } from '../../stores/ProductStore';
 import ProductModal from "../ProductModal.vue";
-import { useProductStore } from "@/stores/ProductStore";
 import TitleDescriptionSlot from '../global/TitleDescriptionSlot.vue';
 
+const {productLists,
+    fetchProducts,
+    isProductLoading} = useProducts();
 
-export default {
-    name: "HomePageProducts",
-    data() {
-        return {
-            selectedProduct: {},
-        };
-    },
-  
-    methods: {
-        selectProduct(product) {
-            this.selectedProduct = product;
-        // console.log(product.img);
-            // console.log(product)
-        },
-        
-  },
-  setup() {
-    const productStore = useProductStore();
+onMounted(async () => {
+  await fetchProducts();
+  console.log('Products from HomePage', productLists.value);
+});
 
-    onMounted(() => {
-      productStore.fetchProducts()
-    })
+const selectedProduct = ref({})
 
-    return {
-      productStore
-    }
-    },
-    components: { ProductModal, TitleDescriptionSlot }
-};
+const selectProduct = (product)=>{
+    selectedProduct.value = product
+}
+
+const store = useProductStore()
+
 </script>
 <style>
 button.p-image-action.p-link {
