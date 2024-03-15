@@ -117,7 +117,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useProducts } from '../../compositions/useProducts';
-import { useProductStore } from '../../stores/ProductStore';
 import ProductModal from "../ProductModal.vue";
 import TitleDescriptionSlot from '../global/TitleDescriptionSlot.vue';
 
@@ -125,19 +124,16 @@ const {productLists,
     fetchProducts,
     isProductLoading} = useProducts();
 
-onMounted(async () => {
-  await fetchProducts();
-  console.log('Products from HomePage', productLists.value);
-});
-
 const selectedProduct = ref({})
 
 const selectProduct = (product)=>{
     selectedProduct.value = product
 }
 
-const store = useProductStore()
-
+onMounted(async () => {
+    await fetchProducts();
+    console.log('Products from HomePage', productLists.value);
+});
 </script>
 <style>
 button.p-image-action.p-link {

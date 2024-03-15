@@ -1,11 +1,10 @@
 <template>
  <BreadCrumbSection pageTitle="Blog"/>
-
  <div>
     <div class="max-w-7xl mx-auto px-6 py-20">
         <div class="grid md:grid-cols-3 sm:grid-sols-2 gap-8">
             <div class="xl:col-span-2 md:col-span-3 sm:col-span-2 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-8">
-                 <div v-for="blog in blogStore.blogs" :key="blog.id">
+                 <div v-for="blog in blogLists" :key="blog.id">
                     <div class="h-[250px] overflow-hidden rounded-md">
                         <img class="h-full w-full rounded-md hover:scale-110 transition duration-500 ease-in-out" :src="blog.photo" alt="">
                     </div>
@@ -40,31 +39,20 @@
  </div>
 
 </template>
-<script>
-import { RouterLink } from 'vue-router';
-import BreadCrumbSection from '../components/global/BreadCrumbSection.vue';
-import { useBlogStore } from '../stores/blogStore';
+<script setup>
 import { onMounted } from 'vue';
-import BlogSideBar from '../components/BlogSidebar.vue'
+import { RouterLink } from 'vue-router';
+import BlogSideBar from '../components/BlogSidebar.vue';
+import BreadCrumbSection from '../components/global/BreadCrumbSection.vue';
+import { useBlogs } from '../compositions/useBlogs';
 
+const {blogLists, isBlogLoading, fetchBlogs} = useBlogs()
 
-export default {
-    name: "BlogView",
-    components: { BreadCrumbSection, RouterLink, BlogSideBar},
+// Call the blog api
+onMounted(async()=>{
+   await fetchBlogs()
+})
 
-
-    setup() {
-        const blogStore = useBlogStore();
-
-        onMounted(() => {
-            blogStore.fetchBlogs();
-        });
-
-        return {
-            blogStore
-        }
-    }
-}
 </script>
 <style>
   

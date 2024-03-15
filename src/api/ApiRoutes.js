@@ -7,5 +7,11 @@ console.log('createUrl:', createUrl('products'));
 export const apiRoutes = {
    product:{
      products: createUrl('products')
+   },
+   blog:{
+     blogs: createUrl('blogs')
+   },
+   review:{
+     reviews: createUrl('reviews')
    }
 }

@@ -17,7 +17,7 @@ export function useProducts(){
 
     // Update productList with the fetched data
       productLists.value = productStore.getProducts();
-      console.log('produtcLost', productLists.value);
+      console.log('productList', productLists.value);
     }
     catch(error){
        console.log(error);

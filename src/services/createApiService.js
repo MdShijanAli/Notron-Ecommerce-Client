@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const createApiService = (apiRoute, defineStore) =>{
-  const fetchLists = async (queryString) => {
+  const fetchLists = async (id) => {
     try {
-        const url = `${apiRoute}${queryString ? `?${queryString}` : ''}`;
+        const url = `${apiRoute}${id ? `/${id}` : ''}`;
         console.log('url:', url);
         const response = await axios.get(url);
 

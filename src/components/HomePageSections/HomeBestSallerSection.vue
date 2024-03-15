@@ -5,7 +5,7 @@
    
         <div class="card">
           <!--  -->
-        <Carousel :value="productStore.products" :numVisible="4" :numScroll="1" :responsiveOptions="responsiveOptions">  
+        <Carousel :value="productLists" :numVisible="4" :numScroll="1" :responsiveOptions="responsiveOptions">  
             <template #item="{data}">
                 <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 group">
                   <div class="border rounded-sm relative overflow-hidden">
@@ -110,18 +110,18 @@
 
     <ProductModal modal="bestSellingProduct" :selectedProduct="selectedProduct"></ProductModal>
     
- 
-   
       </div>
   </div>
 </template>
 <script setup>
-import { useProductStore } from "@/stores/ProductStore";
 import { onMounted, ref } from "vue";
+import { useProducts } from "../../compositions/useProducts";
 import ProductModal from '../ProductModal.vue';
 import TitleDescriptionSlot from "../global/TitleDescriptionSlot.vue";
 
-
+const {productLists,
+    fetchProducts,
+    isProductLoading} = useProducts();
 
 const responsiveOptions = ref([
     {
@@ -146,18 +146,7 @@ const responsiveOptions = ref([
     }
 ]);
 
-
-   const productStore = useProductStore();
-
-// Now you can access the data from the store
-    onMounted(() => {
-      productStore.fetchProducts()
-    })
-    console.log(productStore.products)
-
-
-     const selectedProduct = ref(null);
-
+const selectedProduct = ref(null);
 
 // console.log(products)
 
@@ -165,9 +154,9 @@ const selectProduct = (product) => {
         selectedProduct.value = product;
 }
 
-
-
-
+onMounted(async () => {
+    await fetchProducts();
+});
 </script>
 <style>
 button.p-carousel-prev.p-link,

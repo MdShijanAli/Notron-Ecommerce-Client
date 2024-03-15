@@ -1,35 +1,20 @@
+import { defineStore } from "pinia";
+import { ref } from "vue";
 
-import { defineStore } from 'pinia';
+export const useBlogStore = defineStore('blog', ()=>{
+  const blogs = ref([]);
+  const initialized = ref(false)
 
-export const useBlogStore = defineStore('blog', {
-  state: () => ({
-    blogs: [],
-    isLoading: false,
-  }),
+  const getBlogs = ()=>{
+    return blogs.value
+  }
 
-  actions: {
-    async fetchBlogs() {
-      try {
-        this.isLoading = true;
+  const initialize = (newBlogs)=>{
+    if(!initialized.value){
+      blogs.value =  newBlogs;
+      initialized.value = true
+    }
+  }
 
-        // Replace 'your_api_endpoint' with the actual API endpoint to fetch products
-        const response = await fetch('http://localhost:3000/api/blogs');
-        const data = await response.json();
-
-        // Assuming the API response contains an array of products
-        this.blogs = data;
-        // console.log(this.products)
-
-        this.isLoading = false;
-      } catch (error) {
-        console.error('Error fetching products:', error);
-        this.isLoading = false;
-      }
-    },
-  },
-});
-
-// Export a function to create a new instance of the store
-export function setup() {
-  return useBlogStore();
-}
+  return {blogs, getBlogs, initialize, initialized}
+})

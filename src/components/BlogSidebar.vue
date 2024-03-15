@@ -54,7 +54,7 @@
               <h1 class="text-h3 font-semibold">Recent Posts</h1>
               <div class="border-2 w-[180px] mt-3 mb-5"></div>
 
-              <div v-for="blog in blogStore.blogs" :key="blog.id" class="sm:flex items-center grid gap-5 my-5">
+              <div v-for="blog in blogLists" :key="blog.id" class="sm:flex items-center grid gap-5 my-5">
                     <div class="xl:col-span-2 md:col-span-1 w-[110px] h-[110px]">
                       <img class="w-full h-full rounded-md" :src="blog.photo" alt="">
                     </div>
@@ -87,28 +87,16 @@
         </div>
   </div>
 </template>
-<script>
-import { useBlogStore } from '@/stores/blogStore';
+<script setup>
 import { onMounted } from 'vue';
+import { useBlogs } from '../compositions/useBlogs';
 
+const {blogLists, isBlogLoading, fetchBlogs} = useBlogs();
 
-export default {
-  name: "BlogSideBar",
-
-
-
-  setup() {
-        const blogStore = useBlogStore();
-
-        onMounted(() => {
-            blogStore.fetchBlogs();
-        });
-
-        return {
-            blogStore
-        }
-    }
-}
+// Call the blog  api
+onMounted(async()=>{
+   await fetchBlogs();
+})
 </script>
 <style>
   
