@@ -1,6 +1,6 @@
 <template>
-
 <div>
+  <div>
     <div class="max-w-7xl mx-auto px-6 py-10">
             <div class="grid sm:grid-cols-3 border py-2 px-5 items-center justify-between">
                  <div>
@@ -32,7 +32,6 @@
     </div>
 </div>
 
-
     <div>
         <div class="max-w-7xl mx-auto px-6 pb-20">
             <div
@@ -46,7 +45,6 @@
                           :src="product?.img"
                           alt=""
                         />
-
               </div>
 
             <div
@@ -141,6 +139,7 @@
         <ProductModal modal="product_modal" :selectedProduct="selectedProduct"></ProductModal>
         </div>
     </div>
+</div>
 </template>
 <script setup>
 import { onMounted, ref } from 'vue';

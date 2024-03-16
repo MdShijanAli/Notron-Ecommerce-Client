@@ -37,7 +37,7 @@
                     </div>
 
                     <a href="">
-                      <p class="text-lg hover:text-primary">(5 Customer Review)</p>
+                      <p class="text-lg hover:text-primary">( {{ reviewLists.length }} Customer Review)</p>
                     </a>
                   </div>
 
@@ -125,7 +125,7 @@
       Description
     </button>
     <button @click="selectTab('Reviews')" type="button" class="hs-tab-active:font-semibold text-lg hs-tab-active:border-primary hs-tab-active:text-primary py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent whitespace-nowrap text-gray-500 hover:text-primary" id="basic-tabs-item-3" data-hs-tab="#basic-tabs-3" aria-controls="basic-tabs-3" role="tab">
-      Reviews ({{ reviews.length }})
+      Reviews ({{ reviewLists.length }})
     </button>
   </nav>
 </div>
@@ -153,30 +153,32 @@
   </div>
   </div>
 </template>
-<script>
-import axios from 'axios';
-import { onMounted } from 'vue';
-import { RouterLink } from 'vue-router';
+<script setup>
+import { onMounted, ref, watch } from 'vue';
+import { RouterLink, useRoute } from 'vue-router';
 import BreadCrumbSection from '../components/global/BreadCrumbSection.vue';
 import ButtonComponent from '../components/global/ButtonComponent.vue';
 import LoadingComponent from '../components/global/LoadingComponent.vue';
-import { useProductStore } from '../stores/ProductStore';
+import { useProducts } from '../compositions/useProducts';
+import { useReviews } from '../compositions/useReviews';
+
+// get route
+const route = useRoute()
+
+// Composition
+const {productLists, fetchProducts, isProductLoading} = useProducts()
+const {reviewLists, fetchReviews,fetchReviewsById, isReviewLoading} = useReviews()
 
 
-export default {
-    name: "ProductDetailsPage",
-    components: { BreadCrumbSection, LoadingComponent, ButtonComponent, RouterLink },
-
-  data() {
-    return {
-      mainImage: "",
-      information: "",
-      description: "",
-      count: 1,
-      loading: false,
-      currentProduct: {},
-      reviews: [],
-      responsiveOptions: [
+const mainImage = ref("");
+const information = ref("");
+const description = ref("");
+const count = ref(1);
+const loading = ref(false);
+const currentProduct = ref({});
+const productId = ref('')
+const reviews = ref([]);
+const responsiveOptions = ref([
                 {
                     breakpoint: '1300px',
                     numVisible: 4
@@ -185,98 +187,63 @@ export default {
                     breakpoint: '575px',
                     numVisible: 1
                 }
-      ],
-      images: ['/images/product-2.webp','/images/product-3.webp', '/images/product-4.webp','/images/product-5.webp'],
-      selectedSize: ''
+      ]);
+      const images = ref(['/images/product-2.webp','/images/product-3.webp', '/images/product-4.webp','/images/product-5.webp']);
+      const selectedSize = ref('')
+
+  watch(()=> route.value, async(newVal, oldVal)=>{
+    if (newVal.params.title !== oldVal.params.title) {
+        await updateCurrentProduct();
       }
-  },
-  watch: {
-    $route(to, from) {
-      
-      if (to.params.title !== from.params.title) {
-        this.updateCurrentProduct();
-      }
-    },
-  }, 
+  })
 
-  mounted() {
-    this.updateCurrentProduct();
-    // console.log('current products', this.currentProduct.length)
-    
-  },
+  watch(()=> currentProduct.value, async(newVal, oldVal)=>{
+    if(newVal){
+      const productId = newVal.id
+      await fetchReviewsById(productId);
+    }
+  })
 
+  // Initially fetch the update current Product data
+  onMounted(async()=>{
+     await updateCurrentProduct()
+  })
 
-
-
-  methods: {
-
-    async fetchReviews(currentProduct) {
-      const id = currentProduct.id
-      this.loading = true;
-      
-      try {
-        const response = await axios.get(`http://localhost:3000/api/reviews/${id}`);
-
-        this.reviews = response.data;
-        console.log('Fetched reviews:', this.reviews);
-
-      }catch (error) {
-        console.error('Error fetching reviews:', error.message);
-      } finally {
-        this.loading = false;
-      }
-      
-    },
-
-  async updateCurrentProduct() {
-  this.loading = true;
-  const title = this.$route.params.title;
-  try {
-    await this.store.fetchProducts();
-
-    // Assuming the title is a unique identifier for the product
-    this.currentProduct = this.store.products.find(product => product.title.replace(/ /g, '-') === title);
-    this.mainImage = this.currentProduct.img
-  } catch (error) {
-    console.error('Error fetching product details:', error);
-  } finally {
-    this.loading = false;
-    this.fetchReviews(this.currentProduct)
+  // Get the current Product Value
+  const updateCurrentProduct = async()=>{
+    const title = route.params.title;
+    loading.value = true
+    try{
+       await fetchProducts();
+       currentProduct.value = productLists.value?.find((product)=> product.title.replace(/ /g, '-') === title);
+       mainImage.value = currentProduct.value?.img
+    }
+    catch(error){
+      console.log('Error Fetching Details', error);
+    }
+    finally{
+       loading.value = false
+    }
   }
-    },
-    selectIMG(img) {
-      this.mainImage = img
-    },
 
-    selectTab(val) {
-      console.log(val)
+  // Set  the main image value
+  const selectIMG = (img)=>{
+    mainImage.value = img
+  }
+
+  // Select the tab
+  const selectTab = (val)=>{
+    console.log(val)
       if (val === 'Information') {
-        this.information = this.currentProduct.information
+        information.value = currentProduct.value?.information
         return
       }
       else if (val === 'Description') {
-        this.description = this.currentProduct.long_description
+        description.value = currentProduct.value?.long_description
         return
       }
-      
-    }
+  }
 
-  },
-
-
-  setup() {
-        const store = useProductStore();
-        onMounted(async () => {
-          await store.fetchProducts();
-          // console.log(productStore.products);
-        });
-        return {
-          store
-        };
-    },
- 
-
-}
 </script>
 <style scoped>
 .p-tabview-nav {

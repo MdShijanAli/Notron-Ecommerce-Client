@@ -12,6 +12,7 @@ export const apiRoutes = {
      blogs: createUrl('blogs')
    },
    review:{
-     reviews: createUrl('reviews')
+     reviews: createUrl('reviews'),
+     reviewsByProductId: createUrl('reviews/product')
    }
 }

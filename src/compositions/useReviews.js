@@ -1,16 +1,16 @@
 import { ref } from "vue";
+import reviewService from '../services/reviewService';
 import { useReviewStore } from "../stores/reviewStore";
-import reviewService from './../services/userReviewService';
 
 export function useReviews(){
   const reviewLists = ref([]);
   const isReviewLoading = ref(false);
   const reviewStore = useReviewStore()
 
-  const fetchReviews = async(productId) =>{
+  const fetchReviews = async(reviewId) =>{
       try{
         if(!reviewStore.initialized){
-          const fetchData = await reviewService.fetchLists();
+          const fetchData = await reviewService.fetchLists(reviewId);
           reviewStore.initialize(fetchData)
         }
 
@@ -24,9 +24,25 @@ export function useReviews(){
       }
   }
 
+  const fetchReviewsById = async(productId) =>{
+      try{
+        const fetchData = await reviewService.fetchReviewsById(productId);
+
+        reviewLists.value = fetchData
+        console.log('Reviews match ProductId', reviewLists.value);
+      }
+      catch(error){
+        console.log(error);
+      }
+      finally{
+        isReviewLoading.value = false
+      }
+  }
+
   return {
     reviewLists,
     isReviewLoading,
-    fetchReviews
+    fetchReviews,
+    fetchReviewsById
   }
 }

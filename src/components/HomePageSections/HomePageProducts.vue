@@ -92,8 +92,7 @@
 
           <div class="mt-3">
             <p class="text-sm text-product">{{ product.category }}</p>
-            <!-- :to="{name: 'product-details', params: {title: product?.title.replace(/ /g, '-') } } -->
-            <RouterLink to="/">
+            <RouterLink :to="{name: 'product-details', params: {title: product?.title.replace(/ /g, '-') } }">
               <h1 class="font-semibold my-1.5 hover:text-primary">
                 {{ product.title }}
               </h1>
