@@ -1,33 +1,20 @@
-import axios from "axios";
 import { defineStore } from "pinia";
+import { ref } from "vue";
 
+export const useReviewStore = defineStore('review', ()=>{
+  const reviews = ref([]);
+  const initialized = ref(false);
 
-export const useReviewStore = defineStore('review', {
-  
-  state: () => ({
-    reviews: [],
-    isLoading: false,
-  }),
+  const getAllReviews = () =>{
+    return reviews.value;
+  }
 
-
-  actions: {
-    async fetchReviews(id) {
-      try {
-        this.isLoading = true;
-        const response = await axios.get(`http://localhost:3000/api/reviews/${id}`);
-        this.reviews = response.data
-          
-        console.log('review', this.reviews)
-      }
-      catch {
-        console.error('Error fetching reviews:', error.message);
-      }
-      finally {
-        this.isLoading = false;
-      }
+  const initialize = (newReviews)=>{
+    if(!initialized.value){
+      reviews.value = newReviews;
+      initialized.value = true
     }
   }
 
-
-
+  return {reviews, initialize, initialized, getAllReviews}
 })

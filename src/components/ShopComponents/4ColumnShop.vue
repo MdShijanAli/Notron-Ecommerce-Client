@@ -1,10 +1,10 @@
 <template>
-
 <div>
+  <div>
     <div class="max-w-7xl mx-auto px-6 py-10">
             <div class="grid sm:grid-cols-3 border py-2 px-5 items-center justify-between">
                  <div>
-                    <p>Total Products: <span class="text-primary">{{ store.products.length }}</span></p>
+                    <p>Total Products: <span class="text-primary">{{ productLists.length }}</span></p>
                  </div>
                  <div class="flex gap-5 items-center justify-center">
                     <div>
@@ -32,13 +32,12 @@
     </div>
 </div>
 
-
     <div>
         <div class="max-w-7xl mx-auto px-6 pb-20">
             <div
         class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
       >
-        <div class="group" v-for="product in store.products" :key="product.id">
+        <div class="group" v-for="product in productLists" :key="product.id">
           <div class="border rounded-sm relative overflow-hidden">
             <div class="relative group flex justify-center">
                 <Image preview 
@@ -46,7 +45,6 @@
                           :src="product?.img"
                           alt=""
                         />
-
               </div>
 
             <div
@@ -141,23 +139,26 @@
         <ProductModal modal="product_modal" :selectedProduct="selectedProduct"></ProductModal>
         </div>
     </div>
+</div>
 </template>
 <script setup>
-import {onMounted,ref} from 'vue'
-import { useProductStore } from '@/stores/ProductStore';
+import { onMounted, ref } from 'vue';
+import { useProducts } from '../../compositions/useProducts';
 import ProductModal from '../ProductModal.vue';
 
-  const store = useProductStore()
-  console.log('store', store.products)
-  const selectedProduct = ref({})
+const {productLists,
+    fetchProducts,
+    isProductLoading} = useProducts();
 
-  const selectProduct = (product) => {
-    selectedProduct.value = product;
-  }
+const selectedProduct = ref({})
 
-  onMounted(() => {
-  store.fetchProducts();
-  });
+const selectProduct = (product)=>{
+    selectedProduct.value = product
+}
+
+onMounted(async () => {
+    await fetchProducts();
+});
 
 </script>
 <style>
