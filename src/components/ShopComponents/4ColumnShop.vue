@@ -42,7 +42,7 @@
             <div class="relative group flex justify-center">
                 <Image preview 
                           class="hover:scale-110 transition duration-500 ease-in-out"
-                          :src="product?.img"
+                          :src="getSingleValueFromArray(product?.img)"
                           alt=""
                         />
               </div>
@@ -144,6 +144,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useProducts } from '../../compositions/useProducts';
+import { getSingleValueFromArray } from '../../controllers/getSingleValueFromArray';
 import ProductModal from '../ProductModal.vue';
 
 const {productLists,

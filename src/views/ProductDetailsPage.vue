@@ -50,10 +50,7 @@
 
                     <div>
                       <ul class="flex gap-5">
-                        <li class="w-9 h-9 rounded-full bg-slate-500 border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary"></li>
-                        <li class="w-9 h-9 rounded-full bg-slate-800 border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary"></li>
-                        <li class="w-9 h-9 rounded-full bg-[#73707A] border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary"></li>
-                        <li class="w-9 h-9 rounded-full bg-[#C7BB9B] border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary"></li>
+                        <li v-for="(color, ind) in colors" :key="ind" :style="{ backgroundColor: color }" class="w-10 h-10 rounded-full border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary"></li>
                       </ul>
                     </div>
                   </div>
@@ -61,13 +58,8 @@
                     <p class="font-medium text-xl">Size</p>
 
                     <div>
-                      {{ currentProduct?.size }}
-                      {{ currentProduct?.color }}
                       <ul class="flex gap-5">
-                        <li class="w-9 h-9 rounded-full bg-gray-300 border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary flex items-center justify-center"><a class="text-md" href="">S</a></li>
-                        <li class="w-9 h-9 rounded-full bg-gray-300 border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary flex items-center justify-center"><a class="text-md" href="">M</a></li>
-                        <li class="w-9 h-9 rounded-full bg-gray-300 border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary flex items-center justify-center"><a class="text-md" href="">L</a></li>
-                        <li class="w-9 h-9 rounded-full bg-gray-300 border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary flex items-center justify-center"><a class="text-md" href="">XL</a></li>
+                        <li v-for="(size , ind) in sizes" :key="ind" class="w-10 h-10 rounded-full bg-gray-300 border ring-1 ring-offset-2 ring-gray-300 hover:ring-primary flex items-center justify-center"><a class="text-md" href="">{{ size }}</a></li>
                       </ul>
                     </div>
                   </div>
@@ -176,6 +168,8 @@ const description = ref("");
 const count = ref(1);
 const loading = ref(false);
 const currentProduct = ref({});
+const sizes = ref([]);
+const colors = ref([])
 const productId = ref('')
 const reviews = ref([]);
 const responsiveOptions = ref([
@@ -197,8 +191,19 @@ const responsiveOptions = ref([
       }
   })
 
+  // set the products sizes
+  watch(()=> currentProduct.value, (newVal, oldVal)=>{
+    if(newVal){
+      sizes.value = Array.isArray(newVal.size) ? newVal.size : JSON.parse(newVal.size);
+      colors.value = Array.isArray(newVal.color) ? newVal.color : JSON.parse(newVal.color);
+      mainImage.value = Array.isArray(newVal.img) ? newVal.img : JSON.parse(newVal.img)[0];
+    }
+  })
+
+  // fetch the reviews with the product id
   watch(()=> currentProduct.value, async(newVal, oldVal)=>{
     if(newVal){
+      console.log('Current Product Detaisl: ', newVal);
       const productId = newVal.id
       await fetchReviewsById(productId);
     }
@@ -216,7 +221,6 @@ const responsiveOptions = ref([
     try{
        await fetchProducts();
        currentProduct.value = productLists.value?.find((product)=> product.title.replace(/ /g, '-') === title);
-       mainImage.value = currentProduct.value?.img
     }
     catch(error){
       console.log('Error Fetching Details', error);
