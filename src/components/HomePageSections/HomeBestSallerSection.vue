@@ -66,8 +66,7 @@
               </div>
 
               <div
-                @click="selectProduct(data)"
-                onclick="bestSellingProduct.showModal()"
+                @click="() => { showModal = true; selectProduct(data); }"
                 class="border w-10 h-10 flex items-center justify-center rounded-sm bg-white hover:bg-primary transition duration-500 ease-in-out hover:text-white"
               >
                 <svg
@@ -107,7 +106,9 @@
         </Carousel>
     </div>
 
-    <ProductModal modal="bestSellingProduct" :selectedProduct="selectedProduct"></ProductModal>
+    <Teleport to="body">
+        <ProductModal :show="showModal" @close="showModal = false" :selectedProduct="selectedProduct"></ProductModal>
+      </Teleport>
     
       </div>
   </div>
@@ -115,19 +116,20 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useProducts } from "../../compositions/useProducts";
-import { getSingleValueFromArray } from "../../controllers/getSingleValueFromArray";
+import { getSingleValueFromArray } from "../../compossables/getSingleValueFromArray";
 import ProductModal from '../ProductModal.vue';
 import TitleDescriptionSlot from "../global/TitleDescriptionSlot.vue";
 
-const {productLists,
-    fetchProducts,
-    isProductLoading} = useProducts();
 
-const responsiveOptions = ref([
+const {productLists,
+  fetchProducts,
+  isProductLoading} = useProducts();
+  
+  const responsiveOptions = ref([
     {
-        breakpoint: '1400px',
-        numVisible: 4,
-        numScroll: 1
+      breakpoint: '1400px',
+      numVisible: 4,
+      numScroll: 1
     },
     {
         breakpoint: '1199px',
@@ -146,12 +148,12 @@ const responsiveOptions = ref([
     }
 ]);
 
-const selectedProduct = ref(null);
+const showModal = ref(false)
 
-// console.log(products)
+const selectedProduct = ref({})
 
-const selectProduct = (product) => {
-        selectedProduct.value = product;
+const selectProduct = (product)=>{
+    selectedProduct.value = product
 }
 
 onMounted(async () => {

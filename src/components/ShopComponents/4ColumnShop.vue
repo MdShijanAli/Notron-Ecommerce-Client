@@ -95,8 +95,7 @@
               </div>
 
               <div
-                @click="selectProduct(product)"
-                onclick="product_modal.showModal()"
+              @click="() => { showModal = true; selectProduct(product); }"
                 class="border w-10 h-10 flex items-center justify-center rounded-sm bg-white hover:bg-primary transition duration-500 ease-in-out hover:text-white"
               >
                 <svg
@@ -134,9 +133,9 @@
         </div>
       </div>
 
-        <!-- You can open the modal using ID.showModal() method -->
-
-        <ProductModal modal="product_modal" :selectedProduct="selectedProduct"></ProductModal>
+      <Teleport to="body">
+        <ProductModal :show="showModal" @close="showModal = false" :selectedProduct="selectedProduct"></ProductModal>
+      </Teleport>
         </div>
     </div>
 </div>
@@ -144,12 +143,14 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useProducts } from '../../compositions/useProducts';
-import { getSingleValueFromArray } from '../../controllers/getSingleValueFromArray';
+import { getSingleValueFromArray } from '../../compossables/getSingleValueFromArray';
 import ProductModal from '../ProductModal.vue';
 
 const {productLists,
     fetchProducts,
     isProductLoading} = useProducts();
+
+    const showModal = ref(false)
 
 const selectedProduct = ref({})
 
