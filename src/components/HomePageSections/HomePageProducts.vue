@@ -1,25 +1,25 @@
 <template>
   <div>
     <div class="max-w-7xl mx-auto px-6 sm:py-20 pb-10">
- 
       <TitleDescriptionSlot
-      headline="Featured Items" 
-      description="There are many variations of passages of Lorem Ipsum available" >
-    </TitleDescriptionSlot>
-    
+        headline="Featured Items"
+        description="There are many variations of passages of Lorem Ipsum available"
+      >
+      </TitleDescriptionSlot>
+
       <div
         class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
       >
         <div class="group" v-for="product in productLists" :key="product.id">
-          <div class="border rounded-sm relative px-0 overflow-hidden ">
-              <div class="relative group flex justify-center">
-                <Image preview 
-                          class="hover:scale-110 transition duration-500 ease-in-out"
-                          :src="getSingleValueFromArray(product?.img)"
-                          alt=""
-                        />
-
-              </div>
+          <div class="border rounded-sm relative px-0 overflow-hidden">
+            <div class="relative group flex justify-center">
+              <Image
+                preview
+                class="hover:scale-110 transition duration-500 ease-in-out"
+                :src="getSingleValueFromArray(product?.img)"
+                alt=""
+              />
+            </div>
             <div
               v-if="product.offer"
               class="absolute top-5 left-5 bg-primary px-2 rounded-sm"
@@ -68,7 +68,12 @@
               </div>
 
               <div
-                @click="() => { showModal = true; selectProduct(product); }"
+                @click="
+                  () => {
+                    showModal = true;
+                    selectProduct(product);
+                  }
+                "
                 class="border w-10 h-10 flex items-center justify-center rounded-sm bg-white hover:bg-primary transition duration-500 ease-in-out hover:text-white"
               >
                 <svg
@@ -90,58 +95,67 @@
           </div>
 
           <div class="mt-3">
-            <p class="text-sm text-product">{{ product.category }}</p>
-            <RouterLink :to="{name: 'product-details', params: {title: product?.title.replace(/ /g, '-') } }">
+            <p class="text-sm text-product">
+              {{ getSingleValueFromArray(product.category) }}
+            </p>
+            <RouterLink
+              :to="{
+                name: 'product-details',
+                params: { title: product?.title.replace(/ /g, '-') },
+              }"
+            >
               <h1 class="font-semibold my-1.5 hover:text-primary">
                 {{ product.title }}
               </h1>
             </RouterLink>
             <h1 class="text-product">
               <span v-if="product.discountPrice" class="line-through"
-                >${{ product?.discountPrice }}  </span
-              > <span v-if="product.discountPrice">-</span>
-              ${{ product.price }}
+                >${{ product?.discountPrice }}
+              </span>
+              <span v-if="product.discountPrice">-</span> ${{ product.price }}
             </h1>
           </div>
         </div>
       </div>
 
       <Teleport to="body">
-        <ProductModal :show="showModal" @close="showModal = false" :selectedProduct="selectedProduct"></ProductModal>
+        <ProductModal
+          :show="showModal"
+          @close="showModal = false"
+          :selectedProduct="selectedProduct"
+        ></ProductModal>
       </Teleport>
     </div>
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue';
-import { useProducts } from '../../compositions/useProducts';
-import { getSingleValueFromArray } from '../../compossables/getSingleValueFromArray';
+import { onMounted, ref } from "vue";
+import { useProducts } from "../../compositions/useProducts";
+import { getSingleValueFromArray } from "../../compossables/getSingleValueFromArray";
 import ProductModal from "../ProductModal.vue";
-import TitleDescriptionSlot from '../global/TitleDescriptionSlot.vue';
+import TitleDescriptionSlot from "../global/TitleDescriptionSlot.vue";
 
-const showModal = ref(false)
+const showModal = ref(false);
 
-const {productLists,
-    fetchProducts,
-    isProductLoading} = useProducts();
+const { productLists, fetchProducts, isProductLoading } = useProducts();
 
-const selectedProduct = ref({})
+const selectedProduct = ref({});
 
-const selectProduct = (product)=>{
-    selectedProduct.value = product
-}
+const selectProduct = (product) => {
+  selectedProduct.value = product;
+};
 
 onMounted(async () => {
-    await fetchProducts();
-    console.log('Products from HomePage', productLists.value);
+  await fetchProducts();
+  console.log("Products from HomePage", productLists.value);
 });
 </script>
 <style>
 button.p-image-action.p-link {
-    color: white;
+  color: white;
 }
 button.p-image-preview-indicator {
-    color: white !important;
-    z-index: 999;
+  color: white !important;
+  z-index: 999;
 }
 </style>
