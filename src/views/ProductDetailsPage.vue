@@ -35,11 +35,7 @@
 
               <div class="flex items-center gap-5">
                 <div>
-                  <i class="pi pi-star-fill text-yellow-300 mr-2 text-xl"></i>
-                  <i class="pi pi-star-fill text-yellow-300 mr-2 text-xl"></i>
-                  <i class="pi pi-star-fill text-yellow-300 mr-2 text-xl"></i>
-                  <i class="pi pi-star-fill text-yellow-300 mr-2 text-xl"></i>
-                  <i class="pi pi-star-fill text-yellow-300 mr-2 text-xl"></i>
+                  <Rating v-model="avgRating" readonly :cancel="false" />
                 </div>
 
                 <a href="">
@@ -215,7 +211,7 @@
               </div>
               <div v-if="showReviews">
                 <p class="text-gray-500 dark:text-gray-400">
-                  {{ reviewLists.length }} reviews available
+                  <ReviewsSection :reviews="reviewLists" />
                 </p>
               </div>
             </div>
@@ -228,6 +224,7 @@
 <script setup>
 import { onMounted, ref, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
+import ReviewsSection from "../components/ProductDetails/ReviewsSection.vue";
 import BreadCrumbSection from "../components/global/BreadCrumbSection.vue";
 import ButtonComponent from "../components/global/ButtonComponent.vue";
 import LoadingComponent from "../components/global/LoadingComponent.vue";
@@ -256,12 +253,24 @@ const showReviews = ref(false);
 const images = ref([]);
 const selectedSize = ref("");
 const selectedColor = ref("");
+const avgRating = ref(null);
 
 watch(
   () => route.value,
   async (newVal, oldVal) => {
     if (newVal.params.title !== oldVal.params.title) {
       await updateCurrentProduct();
+    }
+  }
+);
+
+watch(
+  () => reviewLists.value,
+  (newVal, oldVal) => {
+    if (newVal) {
+      const rating = newVal.map((rat) => rat.rating);
+      avgRating.value = rating.reduce((p, n) => p + n, 0) / rating.length;
+      console.log("rating", avgRating.value);
     }
   }
 );
