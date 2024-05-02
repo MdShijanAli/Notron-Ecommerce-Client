@@ -1,5 +1,5 @@
 <template>
-  <CommonTable :data="productLists">
+  <CommonTable :data="productLists" :page="true" apiEndPoint="/products/create">
     <template #table-body>
       <Column
         selectionMode="multiple"

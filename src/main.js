@@ -3,7 +3,6 @@ import '@/assets/styles.scss';
 import "primeicons/primeicons.css";
 import "primevue/resources/primevue.min.css"; /* Deprecated */
 import 'primevue/resources/themes/lara-light-indigo/theme.css';
-import "./flags.css";
 import './style.css';
 
 import { createPinia } from 'pinia';
@@ -194,6 +193,8 @@ app.component('ScrollPanel', ScrollPanel);
 app.component('ScrollTop', ScrollTop);
 app.component('Slider', Slider);
 app.component('Sidebar', Sidebar);
+// app.component('Stepper', Stepper);
+// app.component('StepperPanel', StepperPanel);
 app.component('Skeleton', Skeleton);
 app.component('SpeedDial', SpeedDial);
 app.component('SplitButton', SplitButton);
