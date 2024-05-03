@@ -1,7 +1,11 @@
 <template>
-  <div class="card">
+  <div class="">
     <Toast />
+    <div class="mb-2">
+      <label for="image">{{ label }}</label>
+    </div>
     <FileUpload
+      id="image"
       name="demo[]"
       url="/api/upload"
       @upload="onTemplatedUpload($event)"
@@ -16,6 +20,7 @@
         <div class="flex flex-wrap justify-between items-center flex-1 gap-2">
           <div class="flex gap-2">
             <Button
+              class="text-[#36c495]"
               @click="chooseCallback()"
               icon="pi pi-images"
               rounded
@@ -42,10 +47,10 @@
             :value="totalSizePercent"
             :showValue="false"
             :class="[
-              'md:w-20rem h-1rem w-full md:ml-auto',
+              'md:w-[20rem] h-4 w-full md:ml-auto',
               { 'exceeded-progress-bar': totalSizePercent > 100 },
             ]"
-            ><span class="white-space-nowrap"
+            ><span class="whitespace-nowrap"
               >{{ totalSize }}B / 1Mb</span
             ></ProgressBar
           >
@@ -122,9 +127,9 @@
         </div>
       </template>
       <template #empty>
-        <div class="flex items-center justify-center flex-column">
+        <div class="flex items-center justify-center flex-col">
           <i
-            class="pi pi-cloud-upload border-2 rounded-full p-5 text-8xl text-400 border-400"
+            class="pi pi-cloud-upload border-2 rounded-full p-5 text-8xl text-surface-400 dark:text-surface-600 border-surface-400 dark:border-surface-600"
           />
           <p class="mt-4 mb-0">Drag and drop files to here to upload.</p>
         </div>
@@ -137,6 +142,13 @@
 import { usePrimeVue } from "primevue/config";
 import { useToast } from "primevue/usetoast";
 import { ref } from "vue";
+
+const props = defineProps({
+  label: {
+    type: String,
+    default: "Upload Image",
+  },
+});
 
 const $primevue = usePrimeVue();
 const toast = useToast();

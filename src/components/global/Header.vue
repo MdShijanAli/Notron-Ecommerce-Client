@@ -51,7 +51,7 @@
             />
           </svg>
           <span>
-            <NuxtLink to="/">Account</NuxtLink>
+            <RouterLink to="/dashboard">Account</RouterLink>
           </span>
         </p>
       </div>
@@ -146,7 +146,6 @@
           </svg>
         </div>
 
-
         <button type="button" class="relative inline-flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -163,9 +162,12 @@
             />
           </svg>
           <span class="sr-only">Counter</span>
-            <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-primary border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">{{ cartItemsLength }}</div>
-          </button>
-
+          <div
+            class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-primary border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900"
+          >
+            {{ cartItemsLength }}
+          </div>
+        </button>
 
         <div>
           <div class="drawer z-[100]">
@@ -241,7 +243,8 @@
                       >
                     </li>
                     <li class="">
-                      <RouterLink to="tel:+8801571261165"
+                      <RouterLink
+                        to="tel:+8801571261165"
                         class="flex items-center gap-3 text-white lg:text-base text-sm border-b p-3 rounded-b-xl"
                       >
                         <svg
@@ -259,13 +262,12 @@
                           />
                         </svg>
 
-                        <span>
-                          +880 15712 61165
-                        </span>
+                        <span> +880 15712 61165 </span>
                       </RouterLink>
                     </li>
                     <li class="">
-                      <RouterLink to="mailto:shijan135@gmail.com"
+                      <RouterLink
+                        to="mailto:shijan135@gmail.com"
                         class="flex items-center gap-3 text-white lg:text-base text-sm border-b p-3 rounded-b-xl"
                       >
                         <svg
@@ -283,13 +285,12 @@
                           />
                         </svg>
 
-                        <span>
-                          shijan135@gmail.com
-                        </span>
+                        <span> shijan135@gmail.com </span>
                       </RouterLink>
                     </li>
                     <li class="">
-                      <RouterLink to="/account"
+                      <RouterLink
+                        to="/account"
                         class="flex items-center gap-3 text-white lg:text-base text-sm border-b rounded-b-xl p-3"
                       >
                         <svg
@@ -307,9 +308,7 @@
                           />
                         </svg>
 
-                        <span>
-                        Account
-                        </span>
+                        <span> Account </span>
                       </RouterLink>
                     </li>
                   </ul>
@@ -374,7 +373,7 @@ export default {
     return {
       cartItems: [],
       cartItemsLength: 0,
-    }
+    };
   },
 
   computed: {
@@ -387,7 +386,6 @@ export default {
   mounted() {
     // Access the computed property to initialize cartItems
     this.cartItems = this.getCartItems;
-   
   },
 
   watch: {
@@ -396,12 +394,7 @@ export default {
       this.cartItemsLength = newCartItems.length;
     },
   },
-
 };
-
-
 </script>
 
-<style>
-
-</style>
+<style></style>
